@@ -33,7 +33,7 @@ url: ""
 github_username:  HgO-git
 
 # Build settings
-theme: minima
+theme: jekyll-theme-time-machine
 plugins:
   - jekyll-feed
 
