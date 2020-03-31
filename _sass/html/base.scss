@@ -1,0 +1,78 @@
+/**
+ * Base
+ * https://www.w3schools.com/html
+ * https://www.codingfactory.net/10470
+ * text-shadow: h-shadow v-shadow blur-radius color|none|initial|inherit;
+ */
+ 
+// Global
+* {
+  font-family: "맑은 고딕", sans-serif;
+  font-size: 16px;
+  color: black;
+  line-height: 1.5em;
+
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+  
+  box-sizing: border-box;
+    -webkit-box-sizing: border-box; // Supported by Safari, Chrome
+    -moz-box-sizing: border-box;    // Supported by Firefox
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5em;
+  margin: 0px;
+  padding: 0px;
+
+  @media (min-width: 38em) {
+    font-size: 20px;
+  }
+}
+
+// Title
+title {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.25em;
+}
+
+// Body
+body {
+  margin: 0px;
+  padding: 0px;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+// paragraph
+p {
+  margin: 0px;
+  padding: 0px;
+  font-size: inherit;
+  color: inherit;
+}
+
+// Preformatted text
+pre {
+  display: block;
+  font-family: monospace;
+  white-space: pre;
+  margin: 1em 0;
+  overflow: auto;
+}
+
+// a thematic change in the content
+hr {
+  position: relative;
+  height: 1px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 0px;
+  border: 0;
+  border-style: solid;
+  border-color: black;
+  border-top-width: 1px;
+}

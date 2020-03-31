@@ -1,0 +1,114 @@
+/**
+ * Base
+ */
+// Head
+head {
+    &:title { }
+    &:style { }
+    &:base { }  // Base URL
+    &:link { }
+    &:meta { }  // Metadata
+    &:script { }
+    &:noscript { }
+}
+
+// Single line break
+br { }
+
+/**
+ * Link
+ */
+ link { } // relationship between a document and an external resource (most used to link to style sheets)
+ nav { } // Navigation link
+
+/**
+ * Form
+ */
+// Input control
+input { }
+
+// Multiline input control (text area)
+textarea { }
+
+// Clickable button
+button { }
+
+// Drop-down list
+select { }
+
+// Group of related options in a drop-down list
+optgroup { }
+
+// Option in a drop-down list
+option { }
+
+// Label for an input element
+label { }
+
+// Groups related elements in a form
+fieldset { }
+
+// Caption for a fieldset element
+legend { }
+
+// List of pre-defined options for input controls
+datalist { }
+
+// Result of a calculation
+output { }
+
+/**
+ * Formatting
+ */
+// Isolates a part of text that might be formatted in a different direction from other text outside it
+bdi { }
+
+// Represents the defining instance of a term
+dfn { }
+
+// Text that has been inserted into a document
+ins { }
+
+// Keyboard input
+kbd { }
+
+// Scalar measurement within a known range (a gauge)
+meter { }
+
+// Represents the progress of a task
+progress { }
+
+// What to show in browsers that do not support ruby annotations
+rp { }
+
+// Explanation/pronunciation of characters (for East Asian typography) 
+// ruby Defines a ruby annotation (for East Asian typography)
+rt { }
+
+// Text that is no longer correct
+s { }
+
+// Sample output from a computer program
+samp { }
+
+// Template
+template { }
+
+// Date/Time
+time { }
+
+// Teletype text.
+// Text that should be stylistically different from normal text
+u { }
+
+// Variable
+var { }
+
+// Possible line-break
+wbr { }
+
+/**
+ * Frame
+ */
+// Inline frame
+iframe { }

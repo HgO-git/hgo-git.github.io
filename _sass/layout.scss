@@ -1,0 +1,37 @@
+/**
+ * Layout
+ */
+
+ @charset "UTF-8";
+
+ @import "variables";
+
+.container {
+  position: relative;
+  margin-left: $container-side-space;
+  margin-right: $container-side-space;
+  background-color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+// Copyright
+.copyright-style {
+  position: relative;
+  width: auto;
+  height: fit-content;
+  margin-top: 5.0em;
+  margin-bottom: 1.7em;
+  font-size: $copyright-font-size;
+
+  > hr {
+    height: 1.0px;
+    border : 0;
+    background-image: linear-gradient(to right, white, $color-Hg, white); 
+  }
+  > p {
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+}

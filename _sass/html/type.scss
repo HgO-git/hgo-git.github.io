@@ -1,0 +1,302 @@
+/**
+ * Plain text
+ */
+
+// Global
+* {
+    font-family: "맑은 고딕", sans-serif;
+    font-size: 16px;
+    color: black;
+}
+
+// Headings
+h1, h2, h3, h4, h5, h6 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    // line-height: 1.25em;
+    line-height: 100%;
+    font-weight: bold;
+    color: black;
+    text-rendering: optimizeLegibility;
+}
+// h1 { font-size: 3.5rem; }
+// h2 { font-size: 3.0rem; }
+// h3 { font-size: 2.5rem; }
+// h4 { font-size: 2.0rem; }
+// h5 { font-size: 1.5rem; }
+// h6 { font-size: 1.0rem; }
+h1 { font-size: 2.0rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1.0rem; }
+
+// Bold text
+b {
+
+}
+
+// Important text
+strong {
+    color: #303030;
+}
+
+// Italic text; Tilted text
+i {
+
+}
+
+// Emphasized text 
+em {
+
+}
+
+// Marked or Highlighted text text
+mark {
+
+}
+
+// Small text
+small {
+
+}
+
+// Deleted text
+del {
+
+}
+
+// Inserted text
+ins {
+
+}
+
+// Subscripted text
+sub {
+
+}
+
+// Superscripted text
+sup {
+
+}
+
+/*
+ * Quotation, Citation Text
+ */
+
+// Abbreviation or an acronym
+abbr {
+    font-size: 85%;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+}
+
+abbr[title] {
+    cursor: help;
+    border-bottom: 1px dotted #e5e5e5;
+}
+
+// Contact information
+address {
+
+}
+
+// Text direction
+bdo {
+
+}
+
+// Section that is quoted from another source
+blockquote {
+    padding: .5rem 1rem;
+    margin: .8rem 0;
+    color: #7a7a7a;
+    border-left: .25rem solid #e5e5e5;
+
+    @media (min-width: 30em) {
+        padding-right: 5rem;
+        padding-left: 1.25rem;
+    }
+}
+
+blockquote p:last-child {
+margin-bottom: 0;
+}
+
+// Short inline quotation
+q {
+
+}
+
+// Title of a work
+cite {
+
+}
+
+/**
+ * List
+ */
+
+// ul : Unordered list
+// ol : Ordered list
+ul, ol {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2rem;
+    
+    // Item in a Unordered list or Ordered list
+    > li {
+
+    }
+}
+
+// dl : Description list
+dl {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2rem;
+
+    // Term or Name in a Description list
+    > dt {
+
+    }
+
+    // Description of a Term or Name in a Description list
+    > dd {
+        margin-bottom: 0.5rem;
+        font-size: 0.7em;   
+    }
+}
+
+/**
+ * Link
+ */
+ 
+// Hyperlink
+a {
+    font-size: inherit;
+    color: #0096ff;
+    text-decoration: none;
+    
+    //&:link
+    
+    &:hover, &:active {
+      text-decoration: underline;
+    }
+  
+    &:visited {
+      color: #224e6e;
+    }
+  
+    strong {
+      color: inherit;
+    }
+}
+
+/**
+ * Style
+ */
+
+// Additional details that the user can view or hide
+details {
+    > summary {
+        margin-top: 1em;
+        padding-left: 2rem;
+        cursor: pointer;
+    }    
+    >p {
+        border-radius: 0 0 10px 10px;
+        background-color: #DDDDDD;
+        padding: 2px 6px;
+        margin: 0;
+        box-shadow: 3px 3px 4px black;
+    }
+}
+
+// Dialog box or Window
+dialog {
+
+}
+
+/**
+ * Table
+ */
+table {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: black;
+    border-collapse: collapse;
+    
+    // Header cell
+    > th {
+        padding-left: 0.25rem;
+        padding-right: 0.5rem;
+        border-width: 1px;
+        border-style: none;
+        text-align: center;
+    }
+
+    // Cell
+    > td {
+        padding-left: 0.25rem;
+        padding-right: 0.5rem;
+        border-width: 1px;
+        border-style: none;
+    }
+
+    > tbody tr:nth-child(odd) td,
+    tbody tr:nth-child(odd) th {
+        padding-left: 0.25rem;
+        padding-right: 0.5rem;
+        border-width: 1px;
+        border-style: none;
+    }
+    
+    // Row
+    >tr {
+        padding-left: 0.25rem;
+        padding-right: 0.5rem;
+        border-width: 1px;
+        border-style: none;
+    }
+    
+    // Caption
+    > caption {
+
+    }
+    
+    // Groups the header content
+    > thead {
+
+    }
+
+    // Groups the body content
+    > tbody {
+
+    }
+
+    // Groups the footer content
+    > tfoot {
+
+    }
+
+    // Specifies column properties for each column within a <colgroup> element
+    > col {
+
+    }
+
+    // Specifies a group of one or more columns for formatting
+    > colgroup {
+
+    }
+}
