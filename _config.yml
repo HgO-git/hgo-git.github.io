@@ -4,6 +4,8 @@ description:
 crawlertitle: "HgO.Log"
 url: "http://hgo-git.github.io"
 baseurl: ""
+language: 'kr-ko'
+paginate: 4
 
 github_username: HgO-git
 
@@ -14,3 +16,17 @@ permalink: :categories/:year/:month/:day/:hour/:minute/:title
 sass:
   sass_dir: _sass
   style: compressed
+
+markdown : kramdown
+highlighter : rouge
+kramdown :
+  input : GFM 
+  syntax_highlighter: rouge
+  syntax_highlighter_opts : 
+    default_lang : c 
+    css_class : 'syntax'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      # start_line: 0
