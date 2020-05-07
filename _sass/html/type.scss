@@ -4,7 +4,7 @@
 
 // Global
 * {
-    font-family: "맑은 고딕", sans-serif;
+    font-family: "맑은 고딕", sans-serif, monospace;
     font-size: 16px;
     color: black;
 }
@@ -19,12 +19,6 @@ h1, h2, h3, h4, h5, h6 {
     color: black;
     text-rendering: optimizeLegibility;
 }
-// h1 { font-size: 3.5rem; }
-// h2 { font-size: 3.0rem; }
-// h3 { font-size: 2.5rem; }
-// h4 { font-size: 2.0rem; }
-// h5 { font-size: 1.5rem; }
-// h6 { font-size: 1.0rem; }
 h1 { font-size: 2.0rem; }
 h2 { font-size: 1.8rem; }
 h3 { font-size: 1.6rem; }
@@ -229,60 +223,66 @@ dialog {
  * Table
  */
 table {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    width: 100%;
-    border-width: 1.5px;
+    margin: 1.0rem;
+    width: fit-content;
+    height: 2.0rem;
+    border: none;
     border-style: solid;
     border-color: black;
     border-collapse: collapse;
-    
-    // Header cell
-    > th {
-        padding-left: 0.25rem;
-        padding-right: 0.5rem;
-        border-width: 1px;
-        border-style: none;
-        text-align: center;
+    border-width: 1px;
+
+    // Head
+    > thead {
+        border: inherit;
+        border-bottom-width: 2px;
+        > tr  {
+            border: inherit;
+            > th {
+                padding-top: 0.2rem;
+                padding-bottom: 0.2rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                border: inherit;
+                text-align: center;
+                font-weight: bold;
+                color: black;
+            }
+        }
     }
 
-    // Cell
-    > td {
-        padding-left: 0.25rem;
-        padding-right: 0.5rem;
-        border-width: 1px;
-        border-style: none;
+    // Body
+    > tbody {
+        border: inherit;
+        > tr {
+            border: inherit;
+            > td {
+                padding-top: 0.1rem;
+                padding-bottom: 0.1rem;
+                padding-left: 0.2rem;
+                padding-right: 0.2rem;
+                border: inherit;
+                text-align: left;
+                font-weight: normal;
+            }
+
+            // Odd Column
+            &:nth-child(odd) td {
+            }
+
+            // Even Column
+            &:nth-child(even) td {
+            }
+        }
     }
 
-    > tbody tr:nth-child(odd) td,
-    tbody tr:nth-child(odd) th {
-        padding-left: 0.25rem;
-        padding-right: 0.5rem;
-        border-width: 1px;
-        border-style: none;
-    }
-    
-    // Row
-    >tr {
-        padding-left: 0.25rem;
-        padding-right: 0.5rem;
-        border-width: 1px;
-        border-style: none;
-    }
-    
     // Caption
     > caption {
-
-    }
-    
-    // Groups the header content
-    > thead {
-
-    }
-
-    // Groups the body content
-    > tbody {
-
+        width: fit-content;
+        height: 1.5rem;
+        text-align: center;
+        font-weight: bold;
+        color: black;
     }
 
     // Groups the footer content
@@ -300,3 +300,17 @@ table {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
