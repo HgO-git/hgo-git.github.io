@@ -1,0 +1,630 @@
+@charset "UTF-8";
+
+// https://github.com/rouge-ruby/rouge/wiki/List-of-tokens
+// https://pygments.org/docs/tokens/#keyword-tokens
+
+// Rouge
+.highlight {
+  display: block;
+  overflow-x: auto;
+  margin: 20px;
+  padding: 0;
+  border-width: 2px;
+  background-color: transparent;
+  border: none;
+  font-family: "맑은 고딕", sans-serif, monospace;
+  font-weight: normal;
+  font-size: 13px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-break: break-all;
+  word-wrap: break-word;
+  
+  > pre {
+    margin: 0;
+    padding: 5px;
+    background-color: #F0F0F0;
+    font: inherit;
+
+    > code {
+      margin: 0;
+      padding: 0;
+      background-color: #F0F0F0;
+      font: inherit;
+    }
+  }
+}
+
+.highlight table {
+  margin: 0;
+  padding: 0;
+  background-color: inherit;  // #F0F0F0
+  border: none;
+  font: inherit;
+  
+  > tbody, thead {
+    margin: 0;
+    padding: 0;
+    background-color: inherit;
+  
+    > tr {
+      margin: 0;
+      padding: 0;
+      background-color: inherit;
+      font: inherit;
+    
+      > td {
+        margin: 0;
+        padding: 0;
+        background-color: inherit;
+        font: inherit;
+      
+        > pre {
+          margin: 5px;
+          padding: 0;
+          background-color: inherit;
+          font: inherit;
+        }
+      }
+
+      > td:nth-child(1) pre {
+        margin-left: 2px;
+        background-color: inherit;
+        font: inherit;
+        // font-weight: lighter;
+        font-size: smaller;
+      }
+    }
+  }
+}
+
+/**
+ * Text
+ */
+// Text.Whitespace : 	Specially highlighted whitespace
+.highlight .w {
+  background-color: inherit;
+  color: inherit;
+}
+
+/**
+ * Error
+ */
+// Error : Lexer errors
+.highlight .err {
+  background-color: #EE0000;
+  color: #FFFFFF;
+}
+
+/**
+ * Keyword Tokens
+ */
+// Keyword : For any kind of keyword
+// Especially if it doesn’t match any of the subtypes of course
+// private, protected, public, if, elif, else, return, new, this ...
+.highlight .k {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Keyword.Constant : For keywords that are constants
+// None in future Python versions
+.highlight .kc {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Keyword.Declaration : For keywords used for variable declaration
+// var in some programming languages like JavaScript
+// const, static, final
+.highlight .kd {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Keyword.Namespace : For keywords used for namespace declarations
+// Import in Python and Java and package in Java
+.highlight .kn {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Keyword.Pseudo : For keywords that aren’t really keywords
+// None in old Python versions
+.highlight .kp {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Keyword.Reserved : For reserved keywords
+.highlight .kr {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Keyword.Type : For builtin types that can’t be used as identifiers
+// short, int, long, long long, float, double, char
+.highlight .kt {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+/**
+ * Name Tokens
+ */
+// Name : For any name; Plain text
+// variable names, function names, classes
+.highlight .n {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Attribute : For all attributes
+// HTML tags
+.highlight .na {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Builtin : Builtin names; names that are available in the global namespace
+// Python : int, long, float, long long 
+.highlight .nb {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Name.Builtin.Pseudo : Builtin names that are implicit
+// Runy : self
+// Java : this
+.highlight .bp {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Name.Class : Class names. Because no lexer can know if a name is a class or a function or something else this token is meant for class declarations
+.highlight .nc {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Constant : Token type for constants. In some languages you can recognise a token by the way it’s defined; the value after a const keyword for example 
+// Ruby : In other languages constants are uppercase by definition
+.highlight .no {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Decorator : Token type for decorators.
+// Python : Decorators are syntactic elements
+// C#, Java : Similar syntax elements
+.highlight .nd {
+  background-color: inherit;
+  font-weight: bold;
+  color: #0000FF;
+}
+
+// Name.Entity : Token type for special entities
+// HTML : &nbsp; non-breaking space
+.highlight .ni {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Exception : Token type for exception names. 
+// Python : RuntimeError
+// Java : Define exceptions in the function signature
+.highlight .ne {
+  background-color: inherit;
+  color: #990000;
+}
+
+// Name.Function : Token type for function names
+.highlight .nf {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Property : Token for properties
+.highlight .py {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Label : Token type for label names
+// goto
+.highlight .nl {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Name.Namespace : Token type for namespaces
+// Python, Java : import paths
+// Names following the module/namespace keyword
+.highlight .nn {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Other : Other names. Normally unused
+.highlight .nx {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Name.Tag : Tag names
+// HTML, XML : markup or configuration files
+.highlight .nt {
+  background-color: inherit;
+  color: #00C3FF;
+}
+
+// Name.Variable : Token type for variables
+// PHP, Ruby, Perl : Prefixes for variable names
+.highlight .nv {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Name.Variable.Class : Same as Name.Variable but for class variables and static variables
+.highlight .vc {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Name.Variable.Global : Same as Name.Variable but for global variables
+// Ruby 
+.highlight .vg {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+// Name.Variable.Instance : Same as Name.Variable but for instance variables 
+.highlight .vi {
+  background-color: inherit;
+  color: #0000FF;
+}
+
+/**
+ * Literals
+ */
+// Literal : For any literal. If not further defined
+.highlight .l {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.Date : for date literals
+.highlight .ld {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String : For any string literal
+.highlight .s {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// String.Affix : Token type for affixes that further specify the type of the string they’re attached
+.highlight .sa {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Backtick : Token type for strings enclosed in backticks
+.highlight .sb {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Char : Token type for single characters
+.highlight .sc {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Doc  : Token type for documentation strings
+.highlight .sd {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Single : Token type for single quoted strings
+.highlight .s1 {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Double : Double quoted strings
+.highlight .s2 {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Escape : Token type for escape sequences in strings
+.highlight .se {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Heredoc : Token type for “heredoc” strings
+// Ruby, Perl)
+.highlight .sh {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Interpol : Token type for interpolated parts in strings
+.highlight .si {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Regex : Token type for regular expression literals
+// JavaScript : /foo/
+.highlight .sr {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Symbol : Token type for symbols
+// LISP, Ruby : :foo
+.highlight .ss {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.String.Other : Token type for any other strings
+// Ruby : %q{foo} string constructs
+.highlight .sx {
+  background-color: inherit;
+  color: #C81919;
+}
+
+// Literal.Number	:	Token type for any number literal. If not further defined
+.highlight .m {
+  background-color: inherit;
+  color: #FF7000;
+}
+
+// Literal.Number.Float	: Token type for float literals
+.highlight .mf {
+  background-color: inherit;
+  color: #FF7000;
+}
+
+// Literal.Number.Hex : Token type for hexadecimal number literals
+// (ex) 0xdeadbeef
+.highlight .mh {
+  background-color: inherit;
+  color: #FF7000;
+}
+
+// Literal.Number.Integer : Token type for integer literals
+.highlight .mi {
+  background-color: inherit;
+  color: #FF7000;
+}
+
+//Literal.Number.Integer.Long : Token type for long integer literals
+.highlight .il {
+  background-color: inherit;
+  color: #FF7000;
+}
+
+// Literal.Number.Oct : Token type for octal literals
+.highlight .mo {
+  background-color: inherit;
+  color: #FF7000;
+}
+
+// Literal.Number.Bin : Token type for binary literals
+// (ex) 0b101010
+.highlight .mb {
+  background-color: inherit;
+  color: #FF7000;
+}
+
+/**
+ * Operators
+ */
+// Operator	: For any punctuation operator
+// + - / *
+.highlight .o {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Operator.Word : For any operator that is a word
+// (ex) and
+.highlight .ow {
+  background-color: inherit;
+  color: #4FF4FF;
+}
+
+/**
+ * Punctuation
+ */
+// Punctuation : For any punctuation which is not an operator
+// . , ; { } ( )
+.highlight .p {
+  background-color: transparent;
+  color: inherit;
+}
+
+/**
+ * Comments
+ */
+// Comment : Token type for any comment
+.highlight .c {
+  background-color: inherit;
+  color: #008000;
+}
+
+// Comment.Single : Token type for comments that end at the end of a line
+// # foo
+.highlight .c1 {
+  background-color: inherit;
+  color: #008000;
+}
+
+// Comment.Hashbang : Token type for hashbang comments
+// first lines of files that start with#!
+.highlight .ch  {
+  background-color: inherit;
+  color: #008000;
+}
+
+// Comment.Multiline : Token type for multiline comments
+.highlight .cm {
+  background-color: inherit;
+  color: #008000;
+}
+
+// Comment.Preproc : Token type for preprocessor comments
+.highlight .cp {
+  background-color: inherit;
+  color: #707070;
+}
+
+// Comment.Special : Special data in comments. For example code tags, author and license information, etc.
+.highlight .cs {
+  background-color: inherit;
+  color: #00C3FF;
+}
+
+/**
+ * Generic Tokens
+ */
+// Generic : A generic, unstyled token. Normally you don’t use this token type
+.highlight .g {
+  background-color: inherit;
+  color :  inherit;
+}
+
+// Generic.Deleted : Marks the token value as deleted
+.highlight .gd {
+  background-color: transparent;  //#FFDDDD;  // #493131
+  color: #CC0000;
+}
+
+// Generic.Emph : Marks the token value as emphasized
+.highlight .ge {
+  background-color: inherit;
+  font-style: italic;
+  color: inherit;
+}
+
+// Generic.Error : Marks the token value as an error message
+.highlight .gr {
+  background-color: #FF0000;
+  font-style: italic;
+  color: #FFFFFF;
+}
+
+// Generic.Heading : Marks the token value as headline
+.highlight .gh {
+  background-color: inherit;
+  font-weight: bold;
+  color: inherit;
+}
+
+// Generic.Inserted : Marks the token value as inserted
+.highlight .gi {
+  background-color: #BBFFBB;
+  color: inherit;
+}
+
+// Generic.Output : Marks the token value as program output
+// Python cli lexer
+.highlight .go {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Generic.Prompt : Marks the token value as command prompt
+// bash lexer
+.highlight .gp {
+  background-color: inherit;
+  color: inherit;
+}
+
+// Generic.Strong : Marks the token value as bold
+// rst lexer
+.highlight .gs {
+  background-color: inherit;
+  font-weight: bold;
+  color: inherit;
+}
+
+// Generic.Subheading : Marks the token value as subheadline
+.highlight .gu {
+  background-color: inherit;
+  font-weight: bold;
+  color: inherit;
+}
+
+// Generic.Traceback : Marks the token value as a part of an error traceback
+.highlight .gt {
+  background-color: inherit;
+  color: inherit;
+}   
+  
+// Generic.Lineno : Line numbers
+.highlight .gl {
+  background-color: inherit;
+  color: inherit;
+}
+
+/**
+ * Other
+ */
+// Other : Token for data not matched by a parser 
+// HTML markup in PHP code
+.highlight .x {
+  background-color: inherit;
+  color: inherit;
+}
+
+/**
+ * Unknown
+ */
+.highlight .cd  {
+  background-color: inherit;
+  color: inherit;
+}
+
+.highlight .cpf {
+  background-color: inherit;
+  color: inherit;
+}
+
+.highlight .dl  {
+  background-color: inherit;
+  color: inherit;
+}
+
+.highlight .fm {
+  background-color: inherit;
+  color: inherit;
+}
+
+.highlight .kv {
+  background-color: inherit;
+  color: inherit;
+}
+
+.highlight .pi {
+  background-color: inherit;
+  color: inherit;
+}
+
+.highlight .vm {
+  background-color: inherit;
+  color: inherit;
+}
+
+.highlight .hll {
+  background-color: inherit;
+  color: inherit;
+}
