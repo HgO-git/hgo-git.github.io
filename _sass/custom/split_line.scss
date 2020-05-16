@@ -47,6 +47,8 @@
     border-top-width: 1px;
     border-radius: 20px;
 
+    // transform: translateY(20px);
+
     &:before {
         display: block;
         width: 100%;
@@ -70,6 +72,8 @@
     border-collapse: collapse;
     border-bottom-width: 1px;
     border-radius: 20px;
+    
+    // transform: translateY(-35px);
 
     &:after {
         content: "";

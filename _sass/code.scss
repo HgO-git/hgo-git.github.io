@@ -2,7 +2,7 @@
  * Code snippets
  */
 
-* code {
+code {
   margin: 0px;
   padding: 2.5px;
   width: fit-content;
@@ -14,6 +14,10 @@
   font-weight: normal;
   font-size: 13px;
   color: black;
+
+  > span {
+    background-color: inherit;
+  }
 }
 
 pre {
