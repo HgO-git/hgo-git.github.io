@@ -92,8 +92,10 @@
  */
 // Error : Lexer errors
 .highlight .err {
-  background-color: #EE0000;
-  color: #FFFFFF;
+  // background-color: #EE0000;
+  // color: #FFFFFF;
+  background-color: inherit;
+  color: inherit;
 }
 
 /**
