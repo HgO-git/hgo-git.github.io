@@ -5,6 +5,7 @@ crawlertitle: "HgO.Log"
 url: "http://hgo-git.github.io"
 baseurl: ""
 language: 'kr-ko'
+timezone: Asia/Seoul
 paginate: 4
 
 github_username: HgO-git
