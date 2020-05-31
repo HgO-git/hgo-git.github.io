@@ -135,17 +135,46 @@ cite {
  */
 
 // ul : Unordered list
-// ol : Ordered list
-ul, ol {
+ul {
     margin-top: 1em;
     margin-bottom: 1em;
     margin-left: 0;
     margin-right: 0;
     padding-left: 2rem;
-    
-    // Item in a Unordered list or Ordered list
-    > li {
 
+    list-style-type: disc;
+
+    // Item in a Unordered list
+    > li {
+        // indent + 1
+        > ul {
+            list-style-type: circle;
+            > li {
+                // indent + 2
+                > ul {
+                    list-style-type: none;
+                }
+            }
+        }
+    }
+}
+
+// ol : Ordered list
+ol {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2rem;
+
+    list-style-type: decimal;
+
+    // Item in a Ordered list
+    > li {
+        // indent + 1
+        > ol {
+            list-style-type: lower-alpha;
+        }
     }
 }
 
