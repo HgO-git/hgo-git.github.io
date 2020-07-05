@@ -4,7 +4,7 @@ title: "Shell의 사용 2 : 조건문"
 crawlertitle: post_shell_use_2_conditional_statement
 date: 2020-07-04 21:45:00 +0900
 categories: shell 
-summary: "Shell에서 조건문 사용"
+summary: "Shell에서 조건문 사용.<br>제어문 중 조건문에 대한 내용이다."
 ---
 ###### 1. 기본 조건문  
 &nbsp;특정 조건에 대한 구문으로 Shell script와 Batch file 모두 **if ~ else**로 동일하다.    
