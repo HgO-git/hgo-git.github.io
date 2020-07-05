@@ -11,7 +11,7 @@ summary: "Shell에서 조건문 사용"
 <br>
 &nbsp;**1.1. Shell script** 
 
-- **if [ \<condition\> ]**    
+- **if [ _\<condition\>_ ]**    
 조건이 하나만 있을 때 사용한다.
 ~~~sh
 if [ -z ${1} ]
@@ -20,7 +20,7 @@ then
 fi
 ~~~  
 
-- **if [ \<condition\> ] ~ else**  
+- **if [ _\<condition\>_ ] ~ else**  
 조건의 true, false에 따라 구분될 때 사용한다.  
 ~~~sh
 START_INDEX=
@@ -32,7 +32,7 @@ else
 fi
 ~~~  
 
-- **if [ \<condition_1\> ] ~ elif [ /<condition_2\> ] ~ else**  
+- **if [ _\<condition_1\>_ ] ~ elif [ _\<condition_2\>_ ] ~ else**  
 조건이 두 개 이상일 때, 두번째 조건부터 **elif(else if)**로 사용한다. 
 ~~~sh
 if [ -z ${0} ]
@@ -46,7 +46,7 @@ fi
 ~~~
 
 &nbsp;**1.2. Batch file**   
-- **IF \<condition\>**  
+- **IF _\<condition\>_**  
 조건이 하나만 있을 때 사용한다.
 ~~~batch
 IF [%1]=[] (
@@ -54,7 +54,7 @@ IF [%1]=[] (
 )
 ~~~  
 
-- **IF \<condition\> ~ ELSE**   
+- **IF _\<condition\>_ ~ ELSE**   
 조건의 true, false에 따라 구분될 때 사용한다.  
 ~~~batch  
 SETLOCAL ENABLEDELAYEDEXPANSION
@@ -470,7 +470,7 @@ ENDLOCAL
     ~~~
 
 - 대소문자 구분없이 비교(Ignore case)  
-    - **/I \"%left_variable%\" _(compare_option)_ \"%right_variable%\"**  
+    - **/I \"%left_variable%\" _\<compare_option\>_ \"%right_variable%\"**  
 
     left_variable과 right_variable를 대소문자 구분없이 비교    
     ~~~batch  
