@@ -52,7 +52,7 @@ ENDLOCAL
 ###### 2. For  
 &nbsp;주어진 조건이 true인 경우 또는 주어진 배열까지 반복되는 구문이다.  
 &nbsp;**2.1. Shell script**   
-- **for ${variable} in ${loop_array} do ~ done**  
+- **for _${variable}_ in _${loop_array}_ do ~ done**  
 - **for (( _\<initializer\>;_ _\<condition\>_; _\<counting_expression\>_ ))**  
 초기화한 변수를 특정 조건까지 반복한다.  
 
@@ -70,7 +70,7 @@ done
 ~~~
 
 &nbsp;**2.2. Batch file**    
-- **FOR _\<option\>_ %%A IN ( _\<loop_array\>_ ) DO ~**  
+- **FOR _\<option\>_ %%A IN ( _%loop_array%_ ) DO ~**  
 주어진 배열만큼 반복한다. 이때, 배열의 값에 대한 변수는 **%%**를 사용하며 변수명은 다른 변수와 중복되지 않아야 한다.
 
 ~~~batch
@@ -93,7 +93,7 @@ do
 done
 ~~~  
 
-&nbsp;**3.2. Batch file** 
+&nbsp;**3.2. Batch file**  
 &nbsp;&nbsp;Batch file에는 UNTIL문이 따로 없어서 WHILE문처럼 GOTO문을 사용하여 비슷하게 구현할 수 있다.
 - **:WHILE ~ IF _\<condition\>_ GOTO QUIT ~ GOTO WHILE ~ :QUIT**  
 
@@ -119,11 +119,46 @@ IF !INDEX! GTR 5 (
 ENDLOCAL
 ~~~  
 
-###### 4. 예약어  
+###### 4. select
+&nbsp;&nbsp;전달된 목록을 출력하고 그 목록 중 선택된 것에 대한 처리를 하는 반복문이다.
+Batch file에는 동일한 반복문이 없고, Shell에서도 Bash와 Korn에만 있다.  
+<br>
+
+&nbsp;&nbsp;**4.1. Shell script**  
+- **select _${variable}_ in _${loop_array}_; do ~ done**  
+다른 반복문과 다르게 내부에서 조건이 충족된다고 해서 반복문을 빠져나가지 않으므로 필요한 시점에 **break** 등을 사용해서  반복문을 빠져나가도록 처리해야 한다.   
+**${loop_array}**의 값은 자동으로 메뉴를 구성해주므로 사용자 입력(**${variable}**)을 받아 처리하는 데 사용할 수 있다.  
+
+~~~sh
+PS3="원하는 색상의 번호를 고르세요."
+select var in ( "red" "green" "blue" ) 
+do
+    case ${var} in
+        "red")
+            echo "Selected! 1) red"
+            break
+            ;;
+        "green")
+            echo "Selected! 2) green"
+            break
+            ;;
+        "blue")
+            echo "Selected! 3) blue"
+            break
+            ;;
+        *)
+            echo "선택한 색상의 번호가 잘 못 되었습니다. 다시 입력해주세요"
+            ;;
+    esac
+    REPLY=
+done 
+~~~
+
+###### 5. 예약어  
 &nbsp;&nbsp;반복문에서 사용되는 예약어이다.  
 <br>
 
-&nbsp;&nbsp;**4.1. break**    
+&nbsp;&nbsp;**5.1. break**    
 &nbsp;&nbsp;반복문을 종료한다.
 
 - Shell script  
@@ -153,7 +188,7 @@ FOR /F "delims=" %%L IN ( "color/green.txt" ) DO (
 
 <br>
 
-&nbsp;&nbsp;**4.2. continue**  
+&nbsp;&nbsp;**5.2. continue**  
 &nbsp;&nbsp;continue 아래에 있는 부분을 건너뛰고 다음번 반복을 진행한다.
 
 - Shell script  
@@ -168,9 +203,4 @@ do
     fi
     echo ${line}
 done <"$file"
-~~~
-
-- Batch file  
-
-~~~batch
 ~~~
