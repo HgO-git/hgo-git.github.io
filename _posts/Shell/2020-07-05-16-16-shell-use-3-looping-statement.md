@@ -11,7 +11,7 @@ summary: "Shell에서 반복문.<br>
 &nbsp;주어진 조건이 true인 경우 반복되는 구문이다.  
 &nbsp;**1.1. Shell script**   
 - **while [ _\<condition\>_ ] do ~ done**
-- **while [ _\<condition\>_ ]; do ~ done**
+- **while [ _\<condition\>_ ]; do ~ done**  
 한 줄로 처리하고 싶을 때는 while과 조건 바로 뒤에 **;**를 추가한다.
 
 ~~~sh
