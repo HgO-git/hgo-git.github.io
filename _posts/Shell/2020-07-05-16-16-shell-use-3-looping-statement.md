@@ -3,8 +3,9 @@ layout: post
 title: "Shell의 사용 3 : 반복문"
 crawlertitle: post_shell_use_3_looping_statement
 date: 2020-07-05 16:16:00 +0900
-categories: shell 
-summary: "Shell에서 반복문. 제어문 중 반복문에 대한 대한 내용이다."
+categories: shell
+summary: "Shell에서 반복문.<br>
+제어문 중 반복문에 대한 대한 내용이다."
 ---
 ###### 1. While    
 &nbsp;주어진 조건이 true인 경우 반복되는 구문이다.  
