@@ -4,15 +4,15 @@ title: "Shell의 사용 2 : 조건문"
 crawlertitle: post_shell_use_2_conditional_statement
 date: 2020-07-04 21:45:00 +0900
 categories: shell 
-summary: "Shell에서 조건문 사용.<br>제어문 중 조건문에 대한 내용이다."
+summary: "Shell에서 조건문 사용.<br>제어문 중 조건문에 대한 내용입니다."
 ---
 ###### 1. 기본 조건문  
-&nbsp;특정 조건에 대한 구문으로 Shell script와 Batch file 모두 **if ~ else**로 동일하다.    
+&nbsp;특정 조건에 대한 구문으로 Shell script와 Batch file 모두 **if ~ else**로 동일합니다.    
 <br>
 &nbsp;**1.1. Shell script** 
 
 - **if [ _\<condition\>_ ]**    
-조건이 하나만 있을 때 사용한다.
+조건이 하나만 있을 때 사용합니다.
 ~~~sh
 if [ -z ${1} ]
 then
@@ -21,7 +21,7 @@ fi
 ~~~  
 
 - **if [ _\<condition\>_ ] ~ else**  
-조건의 true, false에 따라 구분될 때 사용한다.  
+조건의 true, false에 따라 구분될 때 사용합니다.  
 ~~~sh
 START_INDEX=
 if [ -z ${0} ]
@@ -33,7 +33,7 @@ fi
 ~~~  
 
 - **if [ _\<condition_1\>_ ] ~ elif [ _\<condition_2\>_ ] ~ else**  
-조건이 두 개 이상일 때, 두번째 조건부터 **elif(else if)**로 사용한다. 
+조건이 두 개 이상일 때, 두번째 조건부터 **elif(else if)**로 사용합니다. 
 ~~~sh
 if [ -z ${0} ]
 then
@@ -47,7 +47,7 @@ fi
 
 &nbsp;**1.2. Batch file**   
 - **IF _\<condition\>_**  
-조건이 하나만 있을 때 사용한다.
+조건이 하나만 있을 때 사용합니다.
 ~~~batch
 IF [%1]=[] (
     ECHO Empty Parameter 1
@@ -55,7 +55,7 @@ IF [%1]=[] (
 ~~~  
 
 - **IF _\<condition\>_ ~ ELSE**   
-조건의 true, false에 따라 구분될 때 사용한다.  
+조건의 true, false에 따라 구분될 때 사용합니다.  
 ~~~batch  
 SETLOCAL ENABLEDELAYEDEXPANSION
 SET START_INDEX=
@@ -68,7 +68,7 @@ ENDLOCAL
 ~~~   
 
 - **IF \<condition_1\> ~ ELSE IF \<condition_2\>~ ELSE**    
-조건이 두 개 이상일 때, 두번째 조건부터 **ELSE IF**로 사용한다.    
+조건이 두 개 이상일 때, 두번째 조건부터 **ELSE IF**로 사용합니다.    
 ~~~batch 
 SETLOCAL ENABLEDELAYEDEXPANSION
 SET START_INDEX=
@@ -152,7 +152,7 @@ ENDLOCAL
 
 - 수정일 비교
     - **\"${left_path}\" -nt \"${right_path}\"**  
-    left_path의 파일이 right_path의 파일보다 최신이다.  
+    left_path의 파일이 right_path의 파일보다 최신입니다.  
     - **\"${left_path}\" -ot \"${right_path}\"**  
     left_path의 파일이 right_path의 파일보다 오래되었다.  
 
@@ -178,7 +178,7 @@ ENDLOCAL
 
 - 파일인지, 폴더인지  
     - **EXIST \"%path%/\"**
-    경로 맨 끝에 **/**을 붙여 폴더가 있는 지 확인할 수 있다. path가 일반 폴더이면 true, 그렇지 않으면 경우 false  
+    경로 맨 끝에 **/**을 붙여 폴더가 있는 지 확인할 수 있습니다. path가 일반 폴더이면 true, 그렇지 않으면 경우 false  
 
     ~~~batch
     IF EXIST "color/achromatic/" (
@@ -358,7 +358,7 @@ ENDLOCAL
     - **\"${left_variable}\" == \"${right_variable}\"**  
 
     left_variable과 right_variable이 같음.
-    = 앞 뒤로 공백에 주의해야 한다.  
+    = 앞 뒤로 공백에 주의해야 합니다.  
     ~~~sh     
     if [ "${0}" = "APPLE" ]
     then
