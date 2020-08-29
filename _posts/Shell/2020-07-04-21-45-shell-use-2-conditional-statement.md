@@ -98,9 +98,9 @@ ENDLOCAL
     ~~~
 
 - 파일인지, 폴더인지  
-    - **-f \"${path}\"**
+    - **-f \"${path}\"**  
     path가 일반 파일이면 true, 폴더나 장치 파일인 경우 false  
-    - **-d \"${path}\"**
+    - **-d \"${path}\"**  
     path가 폴더이면 true, 그렇지 않으면 false  
 
     ~~~sh
@@ -167,7 +167,7 @@ ENDLOCAL
 
 &nbsp;**2.2. Batch file**     
 - 경로가 유효한지  
-    - **EXIST \"%path%\"**  
+    - **EXIST \"%path%\"**   
     path에 해당하는 위치에 파일이나 폴더가 있으면 true, 그렇지 않으면 false  
     
     ~~~batch
@@ -177,7 +177,7 @@ ENDLOCAL
     ~~~
 
 - 파일인지, 폴더인지  
-    - **EXIST \"%path%/\"**
+    - **EXIST \"%path%/\"**  
     경로 맨 끝에 **/**을 붙여 폴더가 있는 지 확인할 수 있습니다. path가 일반 폴더이면 true, 그렇지 않으면 경우 false  
 
     ~~~batch

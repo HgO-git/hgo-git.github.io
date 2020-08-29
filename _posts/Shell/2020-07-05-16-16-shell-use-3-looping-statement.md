@@ -70,7 +70,7 @@ done
 ~~~
 
 &nbsp;**2.2. Batch file**    
-- **FOR _\<option\>_ %%A IN ( _%loop_array%_ ) DO ~**  
+- **FOR _\<option\>_ %%V IN ( _%loop_array%_ ) DO ~**  
 주어진 배열만큼 반복합니다. 이때, 배열의 값에 대한 변수는 **%%**를 사용하며 변수명은 다른 변수와 중복되지 않아야 합니다.
 
 ~~~batch
