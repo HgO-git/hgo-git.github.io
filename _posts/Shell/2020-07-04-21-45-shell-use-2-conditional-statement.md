@@ -4,14 +4,15 @@ title: "Shell의 사용 2 : 조건문"
 crawlertitle: post_shell_use_2_conditional_statement
 date: 2020-07-04 21:45:00 +0900
 categories: shell 
-summary: "Shell에서 조건문 사용.<br>제어문 중 조건문에 대한 내용입니다."
+summary: "Shell에서 조건문 사용.<br>
+제어문 중 조건문에 대한 내용입니다."
 ---
 ###### 1. 기본 조건문  
 &nbsp;특정 조건에 대한 구문으로 Shell script와 Batch file 모두 **if ~ else**로 동일합니다.    
 <br>
 &nbsp;**1.1. Shell script** 
 
-- **if [ _\<condition\>_ ]**    
+- **if [ \<condition\> ]**    
 조건이 하나만 있을 때 사용합니다.
 ~~~sh
 if [ -z ${1} ]
@@ -20,7 +21,7 @@ then
 fi
 ~~~  
 
-- **if [ _\<condition\>_ ] ~ else**  
+- **if [ \<condition\> ] ~ else**  
 조건의 true, false에 따라 구분될 때 사용합니다.  
 ~~~sh
 START_INDEX=
@@ -32,7 +33,7 @@ else
 fi
 ~~~  
 
-- **if [ _\<condition_1\>_ ] ~ elif [ _\<condition_2\>_ ] ~ else**  
+- **if [ \<condition_1\> ] ~ elif [ \<condition_2\> ] ~ else**  
 조건이 두 개 이상일 때, 두번째 조건부터 **elif(else if)**로 사용합니다. 
 ~~~sh
 if [ -z ${0} ]
@@ -46,7 +47,7 @@ fi
 ~~~
 
 &nbsp;**1.2. Batch file**   
-- **IF _\<condition\>_**  
+- **IF \<condition\>**  
 조건이 하나만 있을 때 사용합니다.
 ~~~batch
 IF [%1]=[] (
@@ -54,7 +55,7 @@ IF [%1]=[] (
 )
 ~~~  
 
-- **IF _\<condition\>_ ~ ELSE**   
+- **IF \<condition\> ~ ELSE**   
 조건의 true, false에 따라 구분될 때 사용합니다.  
 ~~~batch  
 SETLOCAL ENABLEDELAYEDEXPANSION
@@ -67,7 +68,7 @@ IF [%1]=[] (
 ENDLOCAL
 ~~~   
 
-- **IF \<condition_1\> ~ ELSE IF \<condition_2\>~ ELSE**    
+- **IF \<condition_1\> ~ ELSE IF \<condition_2\> ~ ELSE**    
 조건이 두 개 이상일 때, 두번째 조건부터 **ELSE IF**로 사용합니다.    
 ~~~batch 
 SETLOCAL ENABLEDELAYEDEXPANSION
@@ -83,6 +84,7 @@ ENDLOCAL
 ~~~  
 
 ###### 2. 경로(파일, 폴더)  
+<br>
 &nbsp;**2.1. Shell script**   
 - 경로가 유효한지  
     - **-e \"${path}\"**  
@@ -189,6 +191,7 @@ ENDLOCAL
     ~~~ 
 
 ###### 3. 정수 비교  
+<br>
 &nbsp;**3.1. Shell script** 
 - 같음(Equal)  
     - **${left_variable} -eq ${right_variable}**  
@@ -352,6 +355,7 @@ ENDLOCAL
     ~~~  
 
 ###### 4. 문자열 비교  
+<br>
 &nbsp;**4.1. Shell script** 
 - 같음(Equal)  
     - **\"${left_variable}\" = \"${right_variable}\"**
@@ -470,7 +474,7 @@ ENDLOCAL
     ~~~
 
 - 대소문자 구분없이 비교(Ignore case)  
-    - **/I \"%left_variable%\" _\<compare_option\>_ \"%right_variable%\"**  
+    - **/I \"%left_variable%\" \<compare_option\> \"%right_variable%\"**  
 
     left_variable과 right_variable를 대소문자 구분없이 비교    
     ~~~batch  

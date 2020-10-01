@@ -8,8 +8,9 @@ summary: "Shell에서 조건문과 반복문을 제외한 제어문에 대한 �
 ---
 ###### 1. 메뉴 선택  
 &nbsp;비교할 조건이 여러 개일 때 사용하는 구문으로 switch와 비슷합니다.  
+<br>
 &nbsp;**1.1. Shell script**  
-- **case _${variable}_ in _\<case_condition_1\>_) ~ ;; _\<case_condition_N\>_) ~ ;; ~ esac**    
+- **case ${variable} in \<case_condition_1\>) ~ ;; _\<case_condition_N\>_) ~ ;; ~ esac**    
 단순히 정수를 비교하는 구문이 아니라 와일드카드 문자를 포함한 패턴도 사용할 수 있습니다.  
 ***)** 부분은 **switch ~ case**에서 **default**와 동일합니다.   
 ~~~sh

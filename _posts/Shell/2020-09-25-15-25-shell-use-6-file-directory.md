@@ -7,11 +7,12 @@ categories: shell
 summary: "Shell에서 파일과 디렉토리관련 내용"
 ---
 ###### 1. 생성  
-&nbsp;File, Directory를 생성합니다.   
+&nbsp;File, Directory를 생성합니다.
+<br>   
 &nbsp;&nbsp;**1.1. Shell script**  
 - **echo _\<content\>_ > \"${file_path}\"**  
-\"${file_path}\" 위치에 _\<content\>_ 를 내용으로 하는 파일을 생성합니다. 
-
+\"${file_path}\" 위치에 _\<content\>_ 를 내용으로 하는 파일을 생성합니다.   
+<br>  
 - **mkdir _\<option\>_ \"${new_directory_path}\"**  
 \"${new_directory_path}\" 위치에 Directory를 생성합니다.   
     - -p : 필요시 _\<option\>_ 부분에 명시할 수 있는 옵션입니다. \"${new_directory_path}\"에 존재하지 않는 Directory가 포함된 경우 중간에 존재하지 않는 Directory도 함께 생성합니다. 
@@ -29,8 +30,8 @@ echo "title : shell" > info.txt
 
 &nbsp;&nbsp;**1.2. Batch file**  
 - **ECHO _\<content\>_ > \"%file_path%\"**   
-\"%file_path%\" 위치에 _\<content\>_ 를 내용으로 하는 파일을 생성합니다. 
-
+\"%file_path%\" 위치에 _\<content\>_ 를 내용으로 하는 파일을 생성합니다.  
+<br>  
 - **MD \"%new_directory_path%\"**
 - **MKDIR \"%new_directory_path%\"**   
 **MD**와 **MKDIR**의 사용은 동일합니다.  
@@ -50,17 +51,19 @@ ECHO "title : BATCH" > info.txt
 
 ###### 2. 삭제  
 &nbsp;File, Directory를 삭제합니다.  
+<br>
 &nbsp;&nbsp;**2.1. Shell script**  
 - **rm _\<options\>_ \"${path}\"**  
 \"${path}\"에 위치하는 File 또는 Directory를 삭제합니다. 필요시 아래와 같은 _\<option\>_ 을 사용할 수 있습니다.    
-    - -r : Diretory 삭제시 하위의 내용을 먼저 삭제합니다. Recursive.  
-    - -i : 삭제시 삭제할 것인지에 대해 묻습니다.  
-    - -f : 삭제에 관련된 메세지를 보여주지 않고 강제로 삭제합니다. Force  
-    - -v : 삭제되는 내용을 모두 출력합니다.  
+    -- -r : Diretory 삭제시 하위의 내용을 먼저 삭제합니다. Recursive.  
+    -- -i : 삭제시 삭제할 것인지에 대해 묻습니다.  
+    -- -f : 삭제에 관련된 메세지를 보여주지 않고 강제로 삭제합니다. Force  
+    -- -v : 삭제되는 내용을 모두 출력합니다.  
+<br>
 - **rmdir _\<option\>_ \"${directory_path}\"**  
 \"${directory_path}\"에 위치하는 Directory를 삭제합니다. **rm**과 다르게 Directory만 삭제합니다. 필요시 아래와 같은 _\<option\>_ 을 사용할 수 있습니다.  
-    - -p : 삭제하려는 Directory의 상위 Directory가 비어있는 경우 함께 삭제합니다.  
-    - -r : Diretory 삭제시 하위의 내용을 먼저 삭제합니다. Recursive.  
+    -- -p : 삭제하려는 Directory의 상위 Directory가 비어있는 경우 함께 삭제합니다.  
+    -- -r : Diretory 삭제시 하위의 내용을 먼저 삭제합니다. Recursive.  
 	
 ~~~sh
 ## 하위 파일과 함께 메세지 출력 없이 project_01 폴더 삭제
@@ -101,9 +104,11 @@ RMDIR /S /Q "work"
 
 ###### 3. 복사  
 &nbsp;File, Directory를 복사합니다.  
+<br>  
 &nbsp;&nbsp;**3.1. Shell script**  
 - **cp _\<option\>_ \"${source_path}\" \"${destination_path}\"**  
-\"${source_path}\"에서 \"${destination_path}\"로 복사합니다.
+\"${source_path}\"에서 \"${destination_path}\"로 복사합니다.  
+<br>  
 - **cp _\<option\>_ \"${source_file_paths}\" \"${destination_directory_path}\"**    
 \"${source_file_paths}\"에 명시된 파일들을 \"${destination_directory_path}\" 위치의 폴더로 복사합니다. 여러 개의 파일을 한번에 복사할 수 있습니다. 필요시 아래와 같은 _\<option\>_ 을 사용할 수 있습니다.
     - -a 또는 \--archive : 아카이브 파일. 원본 파일의 속성 및 링크 정보를 그대로 유지하면서 복사합니다. '-dR \--preserve=all'와 동일합니다.
@@ -208,6 +213,7 @@ COPY /B fruits.txt animals.txt %DESTINATION_DIRECTORY_PATH%
 
 ###### 4. 존재 확인  
 &nbsp;File, Directory이 실제로 있는 지 확인 합니다.  
+<br>
 &nbsp;&nbsp;**4.1. Shell script**  
 - **-e \"${path}\"**
 \"${path}\"에 해당하는 위치에 파일이나 폴더가 있으면 true, 그렇지 않으면 false  
@@ -233,6 +239,7 @@ IF EXIST "color/red.txt" (
 
 ###### 5. 이동  
 &nbsp;지정 경로로 이동합니다.   
+<br>
 &nbsp;&nbsp;**5.1. Shell script**    
 - **cd /"${path}\"**  
 \"${path}\"의 경로로 이동합니다. 경로 대신 아래와 같은 문자를 사용하면 지정된 위치로 이동합니다.  
@@ -276,6 +283,7 @@ CD ..
 
 ###### 6. 변경  
 &nbsp;File, Directory의 이름을 변경합니다.  
+<br>  
 &nbsp;&nbsp;**6.1. Shell script**  
 - **mv _\<option\>_ \"${source_path}\" \"${destination_path}\"**  
 \"${source_path}\"에 위치한 파일이나 폴더의 이름을 \"${destination_path}\"로 변경하거나 \"${source_path}\"에 있는 파일이나 폴더를 \"${destination_path}\"로 옮깁니다. 아래와 같은 옵션을 사용할 수 있습니다. 이때, -f, -i, -n 옵션은 서로 상반되는 기능이기 때문에 함께 사용하면 가장 마지막에 명시된 옵션만 적용됩니다.
@@ -302,6 +310,7 @@ mv "project_01" "project_02"
 - **RENAME \"%source_file_path%\" \"%destination_file_name%\"**  
 - **REN \"%source_file_path%\" \"%destination_file_name%\"**  
 **RENAME**과 **REN**은 동일하게 \"%source_file_path%\"에 위치한 파일의 이름을 \"%destination_file_name%\"로 변경합니다. \"%destination_file_name%\"로 새 드라이브나 새 경로를 지정할 수 없습니다.  
+<br>    
 - **MOVE _\<option\>_ \"%source_paths%\" \"%destination_path%\"**  
 \"%source_paths%\"에서 \"%destination_path%\"로 파일이나 폴더를 옮기고 이름을 변경합니다. \"%source_paths%\"에 여러 개의 경로를 명시하면 한번에 여러 개의 파일을 옮길 수 있습니다. \"%destination_path%\"에는 드라이브를 포함한 전체 경로나 이름을 사용하면 됩니다. 아래는 사용 가능한 옵션입니다.  
     - /Y : \"%destination_path%\"에 이미 파일이나 폴더가 존재하면 확인 메세지 없이 덮어씁니다.  
@@ -318,6 +327,7 @@ REN info.txt info_prev.txt
 
 ###### 7. File과 Directory 목록 확인  
 &nbsp;현재 경로의 File과 Directory 목록을 확인합니다.  
+<br>  
 &nbsp;&nbsp;**7.1. Shell script**  
 - **ls _\<option\>_ _\<path\>_**  
 기본적으로 현재 디렉토리 기준으로 파일에 대한 정보를 나열합니다. 옵션으로 -cftuvSUX나 \--sort가 지정되지 않은 경우 알파벳순으로 항목을 정렬합니다. 아래는 사용할 수 있는 옵션입니다.  
@@ -434,7 +444,7 @@ DIR /S
 
 ###### 8. Link  
 &nbsp;File, Directory의 Link를 설정, 해제합니다. Link는 보여지는 이름만 다를 뿐 원본과 동일한 File 또는 Directory를 공유하는 Hard Link와 다른 이름으로 보여질 뿐 실제로는 원본 File 또는 Directory에 접근하는 Symbolic Link 두 가지로 구분됩니다.  
-
+<br>    
 &nbsp;&nbsp;**8.1. Shell script**  
 - **ln _\<options\>_ "${source_path}" "${link_name}"**  
 현재 경로에 ${source_path}를 ${link_name}으로 Link 생성합니다. 기본적으로 Hard link를 생성하므로 Symbolic Link를 생성하려면 \--symbolic 옵션과 함께 사용해야 합니다. 또한, 생성할 Link 위치에 Link든 실제 폴더나 파일이든 이미 대상이 있으면 안됩니다. Hard Link를 생성할 때 각 ${source_path}는 반드시 존재해야 합니다. Symbolic Link는 임의의 문자열을 포함할 수 있으며 이후 상대적 링크가 상위 폴더와의 관계에 의해 해석됩니다. 아래는 함께 사용할 수 있는 옵션입니다.
@@ -451,6 +461,7 @@ DIR /S
     - -S 또는 \--suffix=_\<suffix\>_ : 일반적인 Backup 접미사를 재정의합니다. _\<suffix\>_ 를 설정한 경우 해당 값으로 재정의합니다.
     - -t 또는 \--target-directory=_\<directory\>_ : Link를 생성할 Directory를 지정합니다. _\<directory\>_ 에 Link 생성할 Directory를 명시하면 됩니다.
     - -T 또는 \--no-target-directory : ${link_name}을 항상 일반 파일로 취급합니다.  
+<br>  
 - **rm _\<options\>_ "${link_path}"**  
 ${link_path}에 위치한 Link를 제거합니다. 아래는 함께 사용할 수 있는 옵션입니다.
     - -f 또는 \--force : 인자와 존재하지 않는 파일을 무시하며 Prompt에 출력하지 않습니다.
@@ -476,6 +487,7 @@ rm -i "p00_test"
     - /D : %SOURCE_PATH%에 대한 Link를 생성합니다. 기본값은 파일 바로 가기 링크입니다.
     - /H : 바로 가기 링크 대신 하드 링크를 만듭니다.
     - /J : 디렉터리 교차점을 만듭니다.  
+<br>  
 - **RMDIR _\<options\>_ "%LINK_PATH%"**    
 %LINK_PATH%에 위치한 Link를 제거합니다. 필요에 따라 아래와 같은 옵션을 사용할 수 있습니다.  
     - /S : 지정된 폴더와 그 하위의 폴더와 파일들을 모두 제거합니다. 폴더 구조를 일괄 제거하는 데 사용됩니다.
@@ -490,6 +502,7 @@ RMDIR /S /Q "p00_test"
 
 ###### 9. 비교  
 &nbsp;두 개의 File이나 Directory를 비교합니다.  
+<br>  
 &nbsp;&nbsp;**9.1. Shell script**  
 - **cmp _\<options\>_  ${file_path_1} ${file_path_2}**  
 ${file_path_1}과 ${file_path_2}에 위치한 두 개의 파일을 Byte 단위로 비교합니다. 종료 값은 두 파일이 같으면 0, 다르면 1, 문제가 있으면 2입니다. 아래는 함께 사용할 수 있는 옵션입니다.
@@ -499,6 +512,7 @@ ${file_path_1}과 ${file_path_2}에 위치한 두 개의 파일을 Byte 단위�
     - -l 또는 \--verbose : 다른 Byte 값과 번호를 출력합니다.
     - -n 또는 \--bytes=_\<limit\>_ : 최대로 _\<limit\>_ Bytes만큼만 비교합니다.
     - -s 또는 \--quiet 또는 \--silent : 모든 표준 출력을 하지 않습니다.  
+
 - **comm _\<options\>_ ${file_path_1} ${file_path_2}**  
 정렬된 ${file_path_1}과 ${file_path_2}에 위치한 두 개의 파일을 한 줄씩 비교합니다. 비교시 'LC_COLLATE'에 지정된 규칙을 따릅니다. 아래는 함께 사용할 수 있는 옵션입니다.
     - -1 : 첫 번째 열을 출력하지 않습니다. ${file_path_1}에 위치한 파일의 고유한 Line을 출력하지 않으므로 파일을 비교하여 ${file_path_2}에만 있는 고유한 내용과 공통된 내용만 출력합니다.
@@ -602,6 +616,7 @@ FC "project_01" "project_02"
 
 ###### 10. 정렬    
 &nbsp;File 또는 표준 입력을 정렬하여 출력합니다.  
+<br>
 &nbsp;&nbsp;**10.1. Shell script**  
 - **sort _\<options\>_ ${file_paths}**  
 명시한 모든 ${file_paths}에 위치한 파일들의 연결을 정렬하여 표준 출력으로 씁니다. ${file_paths} 가 없거나 - 인 경우 표준 입력으로 읽습니다. 아래는 함께 사용할 수 있는 옵션입니다.
@@ -658,6 +673,7 @@ SORT /R "project_01/info.txt" "project_02/info.txt"
 
 ###### 11. 화면당 출력  
 &nbsp;File의 Perusal Filter로 File을 Prompt 한 화면에 한번씩 나눠서 출력합니다.  
+<br>
 &nbsp;&nbsp;**11.1. Shell script**   
 - **more _\<options/>_ ${file_path}**  
 Terminal에서 보기 위한 파일 열람 필터로 ${file_path} 위치의 파일을 출력합니다. 아래는 함께 사용할 수 있는 옵션입니다. 
@@ -707,6 +723,7 @@ MORE /C < "info.txt"
 
 ###### 12. 파일 안에서 문자열 찾기   
 &nbsp;File에서 문자열을 찾습니다.  
+<br>
 &nbsp;&nbsp;**12.1. Shell script**   
 - **grep _\<options\>_ ${pattern} ${file_paths}**  
 명시된 ${file_paths} 각 파일에서 ${pattern}과 일치하는 문자열을 찾습니다. ${file_paths}가 '-'이면 표준 입력을 읽고 ${file_paths}가 없을 때 재귀적이면 '.' 재귀적이지 않으면 '-'로 읽습니다. ${file_paths}가 2개 이하이면 -h로 가정합니다. 줄을 선택하면 종료 상태는 0, 그렇지 않으면 1, 에러가 발생하였을 때 -q 옵션이 사용되지 않았으면 2입니다. 아래는 함께 사용할 수 있는 옵션입니다.
