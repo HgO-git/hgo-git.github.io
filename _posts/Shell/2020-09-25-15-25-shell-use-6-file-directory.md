@@ -97,16 +97,16 @@ rmdir -rp "project_02"
 
 아래는 필요시 명시할 수 있는 _\<attributes\>_ 입니다.
 
-    |**Attribute**|**설명**|
-    |:----|:----|
-    |/R|읽기 전용 파일|
-    |/S|시스템 파일|
-    |/H|숨김 파일|
-    |/A|보관할 파일|
-    |/I|콘텐츠가 인덱싱되지 않은 파일|
-    |/L|재분석 지점|
-    |/O|오프라인 파일|
-    |\-|부정을 뜻하는 접두사|
+|**Attribute**|**설명**|
+|:----|:----|
+|/R|읽기 전용 파일|
+|/S|시스템 파일|
+|/H|숨김 파일|
+|/A|보관할 파일|
+|/I|콘텐츠가 인덱싱되지 않은 파일|
+|/L|재분석 지점|
+|/O|오프라인 파일|
+|-|부정을 뜻하는 접두사|
 
 - **RMDIR _\<option\>_ \"%directory_path%\"**  
 - **RD _\<option\>_ \"%directory_path%\"**  
@@ -843,7 +843,7 @@ MORE /C < "info.txt"
     |-NUM|\--context=_\<num\>_ 과 동일합니다.|
     |\--color=_\<when\>_ <br> \--colour=_\<when\>_|일치하는 문자열에 Marker를 사용하여 강조 표시를 합니다. _\<when\>_ 에는 'always', 'never', 'auto' 를 사용할 수 있으며 빈 값으로 두면 기본 값인 'auto'입니다.|
     |-U <br> \--binary|EOL(MSDOS/Windows)에서 CR 문자를 제거하지 않습니다.|
-	
+
 ~~~sh
 cd "work/project_01"
 
