@@ -99,6 +99,19 @@ ENDLOCAL
     fi
     ~~~
 
+- 경로가 유효하지 않은지  
+    - **! -e \"${path}\"**  
+    path에 해당하는 위치에 파일이나 폴더가 없으면 true, 그렇지 않으면 false  
+    
+    ~~~sh
+    if [ ! -e "color/red.txt" ]
+    then
+        echo "Not exists."
+    else
+        echo "Exists."
+    fi
+    ~~~
+
 - 파일인지, 폴더인지  
     - **-f \"${path}\"**  
     path가 일반 파일이면 true, 폴더나 장치 파일인 경우 false  
