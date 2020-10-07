@@ -228,7 +228,7 @@ ENDLOCAL
 
     left_variable과 right_variable이 같지 않음  
     ~~~sh  
-    if ! [ ${0} -eq 0 ]
+    if [ ! ${0} -eq 0 ]
     then
         echo "Not! Zero"
     elif [ ${0} -ne 1 ]
