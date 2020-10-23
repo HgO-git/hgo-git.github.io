@@ -72,8 +72,50 @@ done
 ~~~
 
 &nbsp;**2.2. Batch file**    
-- **FOR _\<option\>_ %%V IN ( _%loop_array%_ ) DO ~**  
-주어진 배열만큼 반복합니다. 이때, 배열의 값에 대한 변수는 **%%**를 사용하며 변수명은 다른 변수와 중복되지 않아야 합니다.
+- **FOR _\<option\>_ %%\<variable_character\> IN ( _%loop_array%_ ) DO ~**  
+주어진 배열만큼 반복합니다. 이때, 배열의 값에 대한 변수는 **%%**를 사용하며 변수명은 다른 변수와 중복되지 않아야 합니다. _%loop_array%_ 에는 하나 이상의 파일들, 배열, 문자열 그리고 명령어도 사용이 가능합니다.
+
+    - _\<option\>_  
+
+    |**/F Keyword**|**설명**|
+    |:----|:----|
+    |**Option**|**설명**|
+    |:----|:----|
+    |/D|_%loop_array%_ 에 대표 문자가 있으면 파일 이름 대신 디렉터리 이름과 일치하도록 지정합니다.|
+    |/R|전달된 경로를 Root로 하여 Directory Tree를 따라 내려가며 Tree의 각 Directory에서 FOR 구문을 실행합니다.<br>/R 뒤에 경로가 지정되지 않으면 현재 Directory가 사용되고 _%loop_array%_ 에 마침표( . )가 사용되면 Directory Tree만 나열합니다.|
+    |/L|_%loop_array%_ 기준으로 단계별로 증가/감소하는 시작부터 끝까지의 일련의 숫자를 나열합니다.<br>예 : (1,1,5) -> 1 2 3 4 5<br>(5,-1,1) -> 5 4 3 2 1|
+    |/F|하나 이상의 파일들에 대해 조건부로 각 항목에 대한 명령을 수행합니다.<br>이때, 아래와 같은 키워드로 열기 또는 읽기 작업을 진행 중인 파일에 대한 구문 분석을 진행합니다.|
+
+    - _\<option\>_ 에 **/F** 사용시 함께 사용할 수 있는 키워드  
+
+    |**/F Keyword**|**설명**|
+    |:----|:----|
+    |eol=c|행 끝 설명 문자를 하나만 지정합니다.|
+    |skip=n|파일의 시작 부분에서 무시할 행의 개수를 지정합니다.|
+    |delims=_\<delimiter\>_|_\<delimiter\>_ 로 구분 문자 집합을 지정합니다.  이것은 공백 또는 탭에 대한 기본 구분 문자 집합을 바꿉니다.|
+    |tokens=_\<token_list\>_|각 줄에서 어떤 토큰이 각 반복에 대한 For 구문으로 전달될지를 지정합니다. 이 작업은 추가 변수 이름이 할당되도록 됩니다.|
+    |usebackq|역 따옴표( ` ) 내의 문자열을 명령으로 처리하며, 작은따옴표( ' )는 문자열 명령어로 큰따옴표( " )는 파일 이름을 나타내도록 사용합니다.|
+
+    - FOR의 대체 변수 %%\<variable_character\>에서 사용할 수 있는 확장 기능  
+
+    |**%%\<variable_character\> 변수 확장**|**설명**|
+    |:----|:----|
+    |%~\<variable_character\>|따옴표( " )를 제거하는 %\<variable_character\>을 확장합니다.|
+    |%~f\<variable_character\>|%\<variable_character\>을 정규화된 경로 이름으로 확장합니다.|
+    |%~d\<variable_character\>|%\<variable_character\>을 드라이브 문자로만 확장합니다.|
+    |%~p\<variable_character\>|%\<variable_character\>을 경로로만 확장합니다.|
+    |%~n\<variable_character\>|%\<variable_character\>을 파일 이름으로만 확장합니다.|
+    |%~x\<variable_character\>|%\<variable_character\>을 파일 확장명으로만 확장합니다.|
+    |%~s\<variable_character\>|확장된 경로가 짧은 이름만 가지고 있습니다.|
+    |%~a\<variable_character\>|%\<variable_character\>이 파일의 파일 속성으로만 확장합니다.|
+    |%~t\<variable_character\>|%\<variable_character\>을 파일의 날짜/시간으로만 확장합니다.|
+    |%~z\<variable_character\>|%\<variable_character\>을 파일 크기로만 확장합니다.|
+    |%~$PATH:\<variable_character\>|PATH 환경 변수 목록에 있는 Directory를 찾고 %\<variable_character\>을 처음으로 찾은 정규화된 이름으로 확장합니다.<br>환경 변수 이름이 정의되지 않았거나 찾기에서 파일을 찾지 못하면 이 구문에서 빈 문자열로 확장합니다.|
+    |%~dp\<variable_character\>|%\<variable_character\>을 Drive 문자와 경로로만 확장합니다.|
+    %~nx\<variable_character\>|%\<variable_character\>을 파일 이름과 확장명으로만 확장합니다.|
+    %~fs\<variable_character\>|%\<variable_character\>을 짧은 이름을 가진 전체 경로 이름으로만 확장합니다.|
+    %~dp$PATH:\<variable_character\>|%\<variable_character\>에 대한 PATH 환경 변수 목록에 있는 Directory를 찾고 처음 찾은 것의 Drive 문자와 경로로 확장합니다.|
+    %~ftza\<variable_character\>|%\<variable_character\>을 출력줄과 같은 DIR로 확장합니다.|
 
 ~~~batch
 FOR /F "delims=" %%L IN ( "color/red.txt" ) DO (
