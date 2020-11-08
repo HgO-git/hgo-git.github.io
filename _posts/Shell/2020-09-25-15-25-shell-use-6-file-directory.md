@@ -867,3 +867,192 @@ CD "work/project_01"
 
 FIND /I "*.proj" "info.txt"
 ~~~  
+
+###### 13. 파일이나 폴더 찾기    
+&nbsp;지정한 경로에서 파일이나 폴더를 찾습니다.  
+&nbsp;&nbsp;**13.1. Shell script**
+- **find _\<options\>_ "${path}" _\<expression\>_**  
+지정한 ${path} 경로에서 표현식 _\<expression\>_ 에 맞는 파일, 폴더를 나열합니다. ${path}가 지정되지 않은 경우 현재 Directory 경로를 기본 값으로 사용합니다. 명령줄에 ``- ( ) , !`` 문자와 해당 문자가 시작하는 첫 번째 인자까지 검색을 진행할 파일 또는 Directory 이름으로 취급하며 그 뒤에 따라오는 인자는 검색할 대상에 대한 표현식 \<expression\>으로 취급합니다. 검색에 영향을 주는 옵션은 마지막 경로 바로 뒤에 설정하지만 Symbolic Link의 처리를 제어하는 -H, -L, -P 옵션들은 첫 번째 경로 바로 앞에 설정합니다. -H, -L, -P 옵션이 하나 이상 설정된 경우 명령줄 내 마지막에 오는 옵션만 적용됩니다. -H와 -L 옵션이 지정되지 않으면 -P가 기본값입니다. 아래는 해당 옵션의 자세한 설명입니다.
+
+|**Option**|**설명**|
+|:----|:----|
+|-P|**find**의 기본 값으로 Symbolic link를 절대 따르지 않습니다. Symbolic link인 파일을 **find**로 검색하거나 출력할 때 사용되는 정보는 Symbolic link 자체의 속성으로부터 가져옵니다.|
+|-L|Symbolic link를 사용합니다. 파일들에 대해 **find**로 검색하거나 출력할 때 사용되는 정보는 Symbolic link 자체가 아니라 Symbolic link가 가리키는 파일의 속성으로부터 가져옵니다. 이때, Symbolic link가 끊겼거나 파일을 검사할 수 없는 경우는 제외합니다.<br>이 옵션의 사용은 ``-noleaf``를 의미하고 나중에 -P 옵션을 사용해도 -noleaf 옵션은 여전히 유효합니다.<br>-L 옵션이 유효할때 검색 중 하위 Directory에 대한 Symbolic link를 찾으면 Symbolic link가 가리키는 하위 Directory가 검색되고 -type 부분은 Symbolic link가 끊긴 경우를 제외하고 Symbolic link 자체보다 Symbolic link가 가리키는 파일 형식과 항상 일치합니다. -lname과 -ilanme 구문은 항상 false를 반환합니다.|
+|-H|명령줄 인자를 제외한 Symbolic link를 따르지 않습니다. **find**로 검색하거나 출력할 때 사용되는 정보는 Symbolic link 자체의 속성으로부터 가져옵니다. 하지만 명령줄에 지정한 파일이 Symbolic link이고 확인이 가능한 상태이면 Symbolic link가 가리키는 파일의 속성으로 부터 정보를 가져옵니다. 즉, 기본적으로 Symbolic link가 가리키는 파일을 검사할 수 없는 경우 예비로 Symbolic link 자체를 사용합니다. -H 옵션이 유효하고 명령줄에 지정된 경로 중에 Directory에 대한 Symbolic link이 있는 경우 Directory 하위의 내용을 검색합니다. 만약 ``-maxdepth 0``을 사용하면 Directory 하위 검색이 불가능합니다.
+
+표현식 _\<expression\>_ 의 기본은 -print입니다. -H나 -L 옵션이 설정되어 있을 때 ``-newer`` 인자로 나열된 Symbolic link는 참조되지 않고 Symbolic link가 가리키는 파일에서 Timestamp를 사용합니다. 이는 ``-anewer``와 ``-cnewer``에서도 동일하게 적용됩니다. ``-follow`` 옵션은 Symbolic link가 나타나는 시점에 적용이 다르지만 -L 옵션과 비슷합니다. -L 옵션은 사용되지 않고 -follow 옵션만 사용되는 경우 명령줄에서 -follow 옵션 앞의 Symbolic link는 참조되며 뒤의 Symbolic link는 참조되지 않습니다. 표현식은 아래와 같이 Operator, Option, Test, Action으로 구성됩니다.  
+
+- Operator : 쉼표( , ) 연산자는 파일 시스템의 계층을 한번만 지나가지만 여러 Type을 검색할 때 유용합니다. 이때, -fprintf를 사용하여 일치하는 다양한 항목들을 여러 다른 파일로 출력할 수 있습니다. 아래는 우선순위가 감소하는 순서대로 나열되어있는 Operator입니다.    
+
+    |**Operator**|**설명**|
+    |:----|:----|
+    |( \<expr\> )|강제로 우선 처리됩니다.|
+    |! \<expr\>|\<expr\>이 false일 때 true입니다.|
+    |-not \<expr\>|! \<expr\>과 동일하지만 POSIX와 호환되지 않습니다.|
+    |\<expr_1\> \<expr_2\>|두 표현식이 한 줄에 나열된 경우 묵시적으로 'and'과 함께 결합됩니다.<br>\<expr_1\>이 false인 경우 \<expr_2\>는 따로 처리하지 않습니다. 즉, 두 표현식이 모두 true인 경우에만 true입니다.| 
+    |\<expr_1\> -a \<expr_2\>|\<expr_1> \<expr_2>와 동일합니다.|
+    |\<expr_1\> -and \<expr_2\>|\<expr_1> \<expr_2>와 동일하지만 POSIX와 호환되지 않습니다.|
+    |\<expr_1\> -o \<expr_2\>|'OR'을 의미합니다. \<expr_1\>이 true이면 \<expr_2\>는 따로 처리하지 않습니다. 즉, 두 표현식 중 하나만 true여도 true입니다.|
+    |\<expr_1\> -or \<expr_2\>|\<expr_1\> -o \<expr_2\>와 동일하지만 POSIX와 호환되지 않습니다.|
+    |\<expr_1\> , \<expr_2\>|'List'. 항상 표현식 \<expr_1\>과 \<expr_2\>를 처리합니다. \<expr_1\> 값은 폐기되고 \<expr_2\> 값이 해당 전체 목록의 값이 됩니다.|
+
+- Positional option : 항상 true입니다.
+    
+    |**Option**|**설명**|
+    |:----|:----|
+    |-daystart|24시간 전보다 오늘 시작부터 시간을 측정합니다. 명령줄에서 'Test' 옵션에만 영향을 줍니다.<br>-amin, -atime, -cmin, -ctime, -mmin, -mtime|
+    |-follow|사용되지 않음. -L 로 대체되었습니다. Symbolic Link 참조를 제거합니다. -noleaf를 의미합니다. 명령줄에서 뒤에 따라오는 'Test' 옵션에만 영향을 줍니다.<br>-H나 -L 옵션을 따로 명시하지 않으면 -follow 옵션의 위치는 -newer의 동작을 변경합니다.<br>-newer의 인자로 나열된 파일들이 Symbolic Link인 경우 참조가 제거됩니다. 이는 -anewer와 -cnewer에 동일하게 적용됩니다.<br>마찬가지로 -type 옵션은 Link 자체보다 Symoblic Link가 가리키는 파일 형식과 항상 일치합니다.<br>-follow 옵션을 사용하면 -lname과 -ilname 옵션은 항상 false를 반환합니다.|
+    |-L|
+    |-regextype \<type\>|나중에 명령줄에서 발생하는 -regex와 -iregex 'Test'에서 이해하는 정규표현식으로 변경합니다.<br>현재 구현된 유형은 emacs(기본값), posix-awk, posix-basic, posix-egrep, posix-extended입니다.|
+
+- Normal option : 항상 true입니다. 표현식이 처리되지 않아도 항상 영향을 미쳐 true입니다. 그렇기때문에 확실하게 하기 위해 표현식 가장 앞 부분에 명시하는 것이 좋고 그렇지 않으면 경고가 발생합니다.  
+
+    |**Option**|**설명**|
+    |:----|:----|
+    |-depth|각각의 Directory 내용을 해당 Directory보다 먼저 검색합니다.|
+    |-d|-depth와 같습니다. FreeBSD, NetBSD, MacOS X, OpenBSD와 호환됩니다.|
+    |-maxdepth \<levels\>|명령줄 인수에 지정한 Directory Level(음이 아닌 정수)에서부터 하위 Directory Level까지 검색합니다.<br>(예) -maxdepth 0 : 명령 줄의 'Test', 'Action'만 적용됩니다.|
+    |-mindepth \<levels\>|명령줄 인수에 지정한 Directory Level(음이 아닌 정수)보다 작은 Level에는 'Test'와 'Action'을 적용하지 않습니다.<br>(예) -mindepth 1 : 명령줄 인자를 제외한 모든 파일을 검색합니다.|
+    |-mount|다른 파일시스템의 Directory들은 하위 내용을 검색하지 않습니다. 일부 다른 버전의 find와의 호환성 위한 -xdev의 다른 이름입니다.|
+    |-noleaf|Directory에 Hard Link 수보다 하위 Directory가 2개 적다고 가정하여 최적화하지 않습니다. CD-ROM이나 MS-DOS filesystems이나 AFS volume mount points 같이 Unix Directory-Link 규약을 따르지 않는 파일시스템에서 찾을 때 필요합니다. 일반 Unix 파일시스템의 각 Directory에는 적어도 이름과 '.' 항목 이렇게 2개의 Hard link가 있고 하위 Directory가 있는 경우 각각 해당 Directory에 연결된 '..' 항목이 있습니다. **find**가 Directory를 검색할 때, Link보다 2개가 적은 하위 Directory를 검색한 후 Directory의 나머지 항목이 Directory가 아니라 Directory 구조 내 파일이라는 것을 알 수 있습니다. 파일 이름을 검색하지 않아도 되면 검색할 필요가 없으므로 검색 속도가 크게 향상됩니다.|
+    |-xdev|다른 파일시스템에서 Directory를 검색하지 않습니다.|
+    |-ignore_readdir_race|일반적으로 **find**가 파일을 검색할 수 없으면 에러 메세지를 발생합니다. 이 옵션을 설정하면 Directory에서 파일 이름을 검색한 시점과 실제로 파일을 검색하려고 시도하는 시점 사이에 해당 파일이 삭제되어도 에러 메세지가 발생하지 않습니다. 명령줄에 이름이 지정된 파일이나 Directory에도 적용됩니다. 명령줄이 읽을 때 옵션이 적용되므로 해당 옵션을 사용하면서 파일시스템의 일부를 검색하고 다시 옵션을 해제한 후 파일시스템의 일부를 검색할 수 없습니다. 만약, 파일시스템의 일부분만 해당 옵션을 적용하거나 적용하고 싶지 않다면 명령을 쪼개서 처리해야합니다.|
+    |-noignore_readdir_race|-ignore_readdir_race 효과를 제거합니다.|
+    |-warn|경고 메세지를 켭니다. 경고는 명령줄에서 사용할 때만 적용되며 Directory를 검색할 때 발생할 수 있는 조건들에는 적용되지 않습니다. tty가 표준 입력이면 -warn에 해당합니다.|
+    |-nowarn|경고 메세지를 끕니다. tty가 표준 입력이 아니면 -nowarn에 해당합니다.|
+
+- Test : true나 false를 반환합니다. **+N**은 N보다 클 때, **-N**은 N보다 작을 때, **N**은 N과 동일할 때 true입니다.  
+    
+    |:----|:----|
+    |**Accessed**||
+    |-amin \<n\>|\<n\>분 전에 마지막으로 파일에 액세스되었습니다.|
+    |-anewer \<file\>|파일 \<file\>이 수정된 것보다 더 최근에 액세스되었습니다. Command line에서 -anewer 전에 -follow가 먼저 위치하는 경우 -follow 영향을 받습니다.|
+    |-atime \<n\>|\<n\> * 24 시간 전에 마지막으로 파일에 액세스되었습니다.|
+    |**Changed**||
+    |-cmin \<n\>|\<n\>분 전에 파일의 상태가 마지막으로 변경되었습니다.|
+    |-cnewer \<file\>|파일 \<file\>이 수정된 것보다 더 최근에 상태가 변경되었습니다. Command line에서 -cnewer 전에 -follow가 먼저 위치하는 경우 -follow 영향을 받습니다.|
+    |-ctime \<n\>|\<n\> * 24 시간 전에 파일의 상태가 마지막으로 변경되었습니다.|
+    |-empty|파일이 비어있고 일반 파일이나 Directory입니다.|
+    |-false|항상 false입니다.|
+    |-fstype \<type\>|파일 시스템 유형에 파일 \<type\>이 있습니다. 유효한 파일 시스템 유형은 Unix 버전에 따라 다양합니다.|
+    |-gid \<n\>|파일의 숫자 그룹 ID가 \<n\>입니다.|
+    |-group \<gname\>|파일이 \<gname\> 그룹에 속합니다. 숫자로된 그룹 ID도 허용됩니다.|
+    |-ilname \<pattern\>|-lname과 비슷하지만 대소문자를 구분하지 않습니다.|
+    |-iname \<pattern\>|-name과 비슷하지만 대소문자를 구분하지 않습니다.|
+    |-iwholename \<pattern\>|-wholename과 비슷하지만 대소문자를 구분하지 않습니다.|
+    |-inum \<n\>|파일에 inode 번호 \<n\>이 있습니다.|
+    |-ipath \<pattern\>|-path와 비슷하지만 대소문자를 구분하지 않습니다.|
+    |-iregex \<pattern\>|-regex와 비슷하지만 대소문자를 구분하지 않습니다.|
+    |-links \<n\>|파일이 \<n\> 링크를 가지고 있습니다.|
+    |-lname \<pattern\>|파일은 내용이 Shell Pattern의 패턴과 일치하는 내용을 가진 심볼릭 링크입니다. Slash( / )나 마침표( . )를 특별하게 취급하지 않습니다.|
+    |**Modified**||
+    |-mmin \<n\>|파일의 데이터가 \<n\>분 전에 마지막으로 수정되었습니다.|
+    |-mtime \<n\>|파일의 데이터가 \<n\> * 24시간 전에 마지막으로 수정되었습니다.| 
+    |-name \<pattern\>|파일 이름이 Shell Pattern의 패턴과 일치합니다. MetaCharacter( * ? [ ] )는 기본 이름의 시작부분에서 마침표( . )과 일치하지 않습니다. Directory와 그 하위 파일을 무시하려면 **-prune**을 사용하면 됩니다.|
+    |-newer \<file\>|\<file\>보다 최근에 수정된 파일입니다. Command line에서 -newer 전에 -follow가 먼저 위치하는 경우 -follow 영향을 받습니다.|
+    |-nouser|파일의 숫자로 된 User ID에 해당하는 사용자가 없습니다.|
+    |-nogroup|파일의 숫자로 된 Group ID에 해당하는 Group이 없습니다.|
+    |-path \<pattern\>|-wholename을 참조|
+    |-perm \<mode\>|파일의 권한 Bit는 정확히 \<mode\>(Octal 이나 Symbolic)와 일치합니다. 정확하게 일치해야하므로 Symbolic Mode에서 사용하기 위해서는 약간 복잡한 Mode 문자열 지정을 해야합니다.|
+    |-perm -\<mode\>|파일에 대한 모든 Permission bit mode가 설정되어 있습니다. Symbolic Mode에서 사용 가능하고 사용하고자 할 때 보통 사용되는 형태입니다. Symbolic Mode를 사용할 때 u, g, o 를 지정해야합니다.|
+    |-perm +\<mode\>|파일에 대한 Permission bit mode가 설정되어 있습니다. Symbolic Mode에서 사용 가능한 형태이며 사용시 u, g, o를 지정해야합니다.|
+    |-regex \<pattern\>|파일 이름이 정규 표현식 패턴 \<pattern\>과 일치합니다. 이때, 검색이 아니라 전체 경로에서 일치해야 합니다.
+    |-wholename \<pattern\>|파일 이름이 Shell Pattern의 패턴과 일치합니다. ?e/?f 나 ?e.?f를 특별하게 취급하지 않습니다. Directory Tree에 있는 모든 파일과 폴더를 확인하지 않고 무시하려면 -prune을 사용하면 됩니다.|
+    |-size \<n\>|파일이 사용하는 용량 \<n\>입니다. Indirect block을 계산하지는 않지만 실제로 할당되지 않는 Sparse File의 Block을 계산합니다.\<n\>에는 아래와 같은 접미사를 사용할 수 있습니다.<br>b : 512 byte Block으로 접미사가 없을 경우 기본 값으로 사용됩니다.<br>c : Byte<br>w : 2 Byte 단어<br>k : 킬로바이트(1024 bytes)<br>M : 메가바이트(1048576 bytes)<br>G : 기가바이트(1073741824 bytes)|
+    |-true|항상 true|
+    |-type \<c\>|파일의 Type이 \<c\>입니다. 아래는 \<c\>에 사용할 수 있는 값입니다.<br>b : 특수한 Block(Buffered)<br>c : 특수한 문자(Unbuffered)<br>d : 디렉토리<br>p : 명명된 Pipe(FIFO)f : 일반 파일<br>l : Symbolic Link(-L 이나 -follow 옵션은 Symbolic Link가 끊기기 전까지 유효합니다.)<br>s : Socket<br>D : door(Solaris)|
+    |-uid \<n\>|파일의 숫자로 된 User ID가 \<n\>입니다.|
+    |-used \<n\>|파일의 상태가 마지막으로 변경된 이후 \<n\> 일 후에 마지막으로 액세스한 파일입니다.| 
+    |-user \<uname\>|파일의 소유자가 \<uname\>입니다. 이때, 숫자로된 User ID도 사용 가능합니다.|
+    |-samefile \<name\>|\<name\>과 동일한 inode를 가진 파일을 가리킵니다. -L이 유효한 경우 Symbolic Link도 포함됩니다.|
+    |-xtype \<c\>|파일이 Symbolic Link가 아닌 경우 -type과 동일합니다. Symbolic Link인 경우, -H나 -P 옵션이 지정되고 \<c\> 타입에 대한 Link이면 true, -L 옵션이 지정되고 \<c\>가 'l'이면 true입니다. 즉, Symbolic Link의 경우 -xtype은 -type이 확인하지 않는 파일의 타입을 확인합니다.|
+    |-context \<scontext\><br>\--context \<scontext\>|파일이 Security Context \<scontext\>를 가지고 있습니다.(SELinux에서만 사용 가능합니다.)|
+    |-readable|
+    |-writable|
+    |-executable|
+
+- Action : 연산자를 사용하여 여러 Action을 사용할 수 있습니다. 생략된 경우 -로 가정되며 기본 Action은 표현식이 true인 경우 모든 파일을 -print하는 것입니다.  
+
+    |**Option**|**설명**|
+    |:----|:----|
+    |-delete|파일들을 삭제합니다. 삭제에 성공하면 true, 실패하면 에러 메세지를 출력합니다. 해당 옵션을 사용하면 자동적으로 -depth 옵션이 활성화됩니다. 실제로 삭제하기 전에 -print -depth을 사용하여 테스트할 수 있습니다.|
+    |-print0|항상 true입니다. 표준 출력으로 파일 이름 전체를 출력한 후 -print가 newline으로 사용하는 문자를 출력합니다. 보통 newline 문자를 따로 지정하지 않는 경우 null입니다. 파일 이름에 Newline이나 다른 형식의 White space가 포함된 경우라도 **find** 출력을 처리하는 프로그램에 의해 올바르게 해석되며 이는 xargs 옵션의 -0에 해당됩니다.|
+    |-printf \<format\>|항상 true입니다. \ escape와 % 지시어를 해석하여 \<format\>을 표준 출력으로 출력합니다. Field 너비와 정밀도는 'printf' 함수로 지정할 수 있습니다. 많은 Field가 %d가 아닌 %s로 출력되며 이는 Flag가 정상적으로 동작하지 않는 다는 것을 의미할 수 있습니다. - Flag가 동작하면 Field를 강제로 왼쪽 정렬합니다. -print와 달리 -printf는 문자열 끝에 Newline을 추가하지 않습니다.|
+    |-fprintf \<file\> \<format\>|항상 true입니다. -printf와 같지만 -fprint와 같은 파일에 출력합니다. 조건자가 일치하지 않더라도 출력 파일은 항상 생성됩니다.|
+    |-print|항상 true입니다. 파일의 전체 이름과 그 끝에 Newline을 표준 출력으로 출력합니다. **find**의 출력을 다른 프로그램으로 전달하기 위해 \| 를 사용하고 파일에 개행 문자가 포함되어 있지 않을 경우 -print0 사용을 고려할 수 있습니다.|
+    |-fprint0 \<file\>|항상 true입니다. -print0와 같지만 -fprint와 같은 파일에 출력합니다. 조건자가 일치하지 않더라도 출력 파일은 항상 생성됩니다.|
+    |-fprint \<file\>|항상 true입니다. 전체 파일의 이름을 지정한 \<file\>에 출력합니다. **find** 실행시 파일이 없으면 생성되고 그렇지 않으면 잘립니다. 파일 이름을 '/dev/stdout'과 '/dev/stderr'로 지정하는 경우 각각 표준 출력과 표준 에러로 특수 처리됩니다. 조건자가 일치하지 않더라도 출력 파일은 항상 생성됩니다.|
+    |-ls|항상 true입니다. 표준 출력으로 현재 파일 목록을 ``ls -dils`` 형식으로 나열합니다. 블록 수는 환경 변수 POSIXLY_CORRECT를 따로 지정하지 않는 한 1K이며 이 경우 512 Bytes 블록을 사용합니다.|
+    |-fls \<file\>|항상 true입니다. -ls와 같지만 -fprint와 같은 파일에 출력합니다. 조건자가 일치하지 않더라도 출력 파일은 항상 생성됩니다.|
+    |-prune|-depth와 함께 사용되지 않으면 true이며 파일이 Directory일때 하위를 검색하지 않습니다. -depth와 함께 사용되면 false이고 아무 영향이 없습니다.|
+    |-quit|즉시 종료합니다. 하위 프로세스는 실행되지 않지만 명령줄에 지정한 경로는 더 이상 처리되지 않습니다. ``-execdir ... {} +``로 구성된 모든 명령줄이 종료되기 전에 호출되며 종료 상태는 이미 오류가 발생했는 지에 따라 0이 아닐 수 있습니다.<br>(예)find /tmp/foo /tmp/bar -print -quit<br>결과 : /tmp/foo|
+    |-exec \<command\> ;|\<command\>를 실행합니다. 상태값이 0으로 반환되는 경우 true입니다. **find**에 대한 모든 인자는 ;로 구성된 인자까지 명령에 대한 인자로 취급합니다. 문자열 '{}'은 일부 **find** 버전에서처럼 인자가 단독으로 처리되지 않고 \<command\>의 인자가 적용되는 모든 현재 파일의 이름으로 대체됩니다. Shell에 의한 확장으로부터 보호하기 위해 Escape('\\')나 따옴표( " )로 감싸야 할 수 있습니다. \<command\>는 Directory에서 시작되며 지정한 \<command\>가 일치하는 각 파일에 대해 한 번씩 실행됩니다. 피할 수 없는 보안 문제가 있기때문에 -execdir 옵션을 대신 사용하는 것이 좋습니다.|
+    |-exec \<command\> {} +|``-exec`` 옵션의 변형으로 선택한 파일들에 대해 지정한 명령을 실행하지만 명령줄은 마지막에 선택한 각 파일 이름을 추가하여 빌드합니다. 명령의 총 호출 수가 일치하는 파일 수보다 훨씬 적습니다. 명령줄은 ``xargs``와 거의 같은 방식으로 빌드됩니다. 명령 내에 '{}' 인스턴스 하나만 허용되며 명령은 시작 Directory에서 실행됩니다.|
+    |-ok \<command\> ;|``-exec``와 같지만 표준 입력으로 사용자에게 먼저 물어봅니다. 응답이 'y'나 'Y'로 시작하지 않는 경우 명령을 실행하지 않고 바로 false를 반환합니다. 명령이 실행되는 경우 표준 입력은 /dev/null로 Redirection됩니다.|
+    |-execdir \<command\> ;<br>-execdir \<command\> {} +|``-exec``와 같지만 지정된 명령은 일반적인 검색이 시작되는 Directory가 아닌 일치하는 파일이 포함된 하위 Directory에서 실행됩니다. 일치된 파일에 대한 경로를 처리하는 동안 다른 조건을 처리하는 것을 피하기 때문에 훨씬 더 안전한 명령입니다. ``-exec``와 마찬가지로 ``-execdir`의 '+'는 명령줄에서 하나 이상의 일치된 파일이 처리되도록 빌드하지만 명령을 호출할 때 같은 하위 Directory에 있는 파일들만 나열하도록 합니다. 이 옵션을 사용시 $PATH 환경 변수가 현재 Directory를 참조하지 않아야 합니다. 그렇지않으면 공격자는 -execdir 실행으로 Directory에 원하는 적당한 이름의 파일을 남겨놓아 원하는 명령어를 실행할 수 있습니다.|
+    |-okdir \<command\> ;|``-execdir``와 같지만 표준 입력으로 사용자에게 먼저 물어봅니다. 응답이 'y'나 'Y'로 시작하지 않는 경우 명령을 실행하지 않고 바로 false를 반환합니다. 명령이 실행되는 경우 표준 입력은 /dev/null로 Redirection됩니다.|
+    
+    아래는 Action의 Print \<format\>에 사용되는 Escape와 지시어입니다. 이때, \ 뒤에 다른 문자가 있는 경우 일반 문자로 취급되어 둘 다 출력됩니다. 아래 지정된 문자의 경우 % 뒤에 붙으면 출력되지 않고 버려집니다. 그 외 다른 문자는 출력됩니다. %m, %d 지시문은 #, 0, +를 지원하며 숫자 지시문인 G, U, b, D, k, n은 지원되지 않습니다. - Format Flag가 지원되고 Field의 정렬이 오른쪽 맞춤(기본)에서 왼쪽 맞춤으로 변경됩니다.  
+
+    |**Format Escape&지시어**|**설명**|
+    |:----|:----|
+    |\a|Alarm bell|
+    |\b|Backspace|
+    |\c|즉시 출력을 멈추고 갱신합니다|
+    |\f|From feed|
+    |\n|Newline|
+    |\r|Carriage return|
+    |\t|수평 Tab|
+    |\v|수직 Tab|
+    |\\ |ASCII NUL|
+    |\\\\ |Backslash( \ )|
+    |\\<nnn\>|ASCII code가 8진수 \<nnn\>인 문자입니다.|
+    |%%|백분율 기호|
+    |%a|파일의 마지막 Access 시간을 'ctime' 함수가 반환한 형식으로 표시합니다.|
+    |%A\<format\>|@나 'strftime' 함수의 지시어 중 하나로 파일에 마지막으로 Access한 시간을 지정한 \<format\> Format으로 표시합니다. 아래는 \<format\>에 사용 가능한 값입니다. 일부는 시스템별 'strftime' 차이로 인해 동일하게 사용할 수 없을 수 있습니다.<br>* 시간 fields : @ seconds since Jan. 1, 1970, 00:00 GMT.<br>&nbsp;H : 시간. 00 ~ 23으로 표시<br>&nbsp;I : 시간. 01 ~ 12로 표시<br>&nbsp;k : 시간. 0 ~ 23으로 표시<br>&nbsp;l : 시간. 1 ~ 12로 표시<br>&nbsp;M : 분. 00 ~ 59으로 표시<br>&nbsp;p : 현재 지역의 AM(오전), PM(오후)<br>&nbsp;r : 12시간 기준의 시간 (예) hh:mm:ss [AM/PM]<br>&nbsp;S : 초. 00 ~ 60로 표시<br>&nbsp;T : 24시간 기준의 시간 (예) hh:mm:ss<br>&nbsp;+ : +로 분리되는 날짜와 시간. 시간은 현재 시간대(TZ 환경 변수 설정에 영향을 받음) 기준입니다. (예) 1961-06-17+18:00:04<br>&nbsp;X : 현재 지역의 시간 표시 (예) H:M:S<br>&nbsp;Z : 시간대. 시간대가 정해지지 않은 경우 빈 값입니다. (예) EDT<br>* 날짜 fields<br>&nbsp;a : 현재 지역의 축약된 요일 (예) Sun, Mon, Tue, Wed, Thu, Fri, Sat<br>&nbsp;A : 현재 지역의 요일 (예) Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday<br>&nbsp;b : 현재 지역의 축약된 월 (예) Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec<br>&nbsp;B : 현재 지역의 월 (예) January, February, March, April, May, June, July, Augst, September, October, November, December<br>&nbsp;c : 현재 지역의 날짜와 시간 (예) Sat Jun 04 18:00:04 KST 1961<br>&nbsp;d : 월 기준의 일. 01 ~ 31로 표시<br>&nbsp;D : 날짜. mm/dd/yy<br>&nbsp;h : b 와 동일<br>&nbsp;j : 년 기준의 일. 001 ~ 366로 표시<br>&nbsp;m : 월. 01 ~ 12으로 표시<br>&nbsp;U : 년 기준의 일요일부터 시작하는 주의 수. 00 ~ 53로 표시<br>&nbsp;w : 주 기준의 일. 0 ~ 6으로 표시<br>&nbsp;W : 년 기준의 월요일부터 시작하는 주의 수. 00 ~ 53로 표시<br>&nbsp;x : 현재 지역의 날짜 표시. mm/dd/yy<br>&nbsp;y : 년의 마지막 두자리. 00 ~ 99로 표시<br>&nbsp;Y : 년. 1970 ~<br>&nbsp;|
+    |%b|512 bytes 블록에서 파일에 사용된 Disk 공간. Disk 공간은 파일시스템의 블록 크기의 배수로 할당되므로 보통 '%s / 1024'보다 크지만 파일이 Sparse 파일인 경우 더 작을 수도 있습니다.|
+    |%c|파일의 상태가 마지막으로 변경된 시간을 'ctime' 함수가 반환한 형식으로 표시합니다.|  
+    |%C\<format\>|파일의 상태가 마지막으로 변경된 시간을 지정한 \<format\> Format으로 표시합니다 %A와 동일한 Format을 사용합니다.|
+    |%d|Directory 구조에서 파일의 Depth입니다. 0은 파일이 명령줄 인자입니다.|
+    |%D|파일이 위치하는 장치 번호(십진수)입니다. stat 구조체의 st_dev 값입니다.|
+    |%f|선행 Directory가 제거된 파일의 이름입니다. 오직 마지막 항목만 표시합니다.|
+    |%F|파일이 있는 파일시스템의 유형입니다. 해당 값을 -fstype에서 사용할 수 있습니다.|
+    |%g|파일의 그룹 이름이나 이름이 없는 경우 숫자로 된 그룹 ID입니다.|
+    |%G|파일의 숫자로 된 그룹 ID|
+    |%h|파일 이름을 제외한 선행 Directory. 파일이 현재 Directory에 있고 이름에 Slash가 없으면 . 으로 확장됩니다.|
+    |%H|파일이 발견된 명령줄 인자|
+    |%i|파일의 inode 번호(십진수)|
+    |%k|1K 블록에서 파일에 사용된 Disk 공간. Disk 공간은 파일시스템에서 블록 크기의 배수로 할당되므로 '%s / 1024'보다 크지만 sparse 파일인 경우 더 작을 수도 있습니다.|
+    |%l|Symbolic link의 객체. 파일이 Symbolic link가 아닌 경우 빈 문자열입니다.|
+    |%m|파일의 권한 Bits(8진수). 대부분의 Unix 구현에서 사용하는 전통적인 번호를 사용하지만 특정 구현에서 8진수 권한 Bit를 비정상적인 순서로 사용하는 경우 실제 파일의 Mode와 %m의 출력값에 차이가 있습니다. 일반적으로 숫자 앞에 0이 표시되도록 하려면 #을 사용하면 됩니다.(%#m)|
+    |%M|파일의 권한. ls의 경우 Symbolic 형식입니다. 이 지시어는 4.2.5 버전 이상에서 지원됩니다.|
+    |%n|파일의 Hard Link 수|
+    |%p|파일의 이름|
+    |%P|파일이 발견된 명령줄 인수의 이름이 제거된 파일의 이름|
+    |%s|파일의 크기(Bytes)|
+    |%t|파일의 마지막 수정 시간을 'ctime' 함수에서 반환한 형태로 표시합니다.|
+    |%T\<format\>|파일의 마지막 수정 시간을 지정한 \<format\> Format으로 표시합니다 %A와 동일한 Format을 사용합니다.|
+    |%u|파일의 User 이름이나 User가 이름이 없는 경우 숫자로 된 User ID|
+    |%U|파일의 숫자로 된 User ID|
+    |%y|ls -l와 같은 파일의 타입.<br>U=알수 없는 타입(발생하면 안됨)|
+    |%Y|%y와 같은 파일의 타입과 Symbolic link.<br>L=loop<br>N=nonexistent|
+    |%Z|파일의 보안 Context. SELinux에서만 사용됩니다.|  
+
+~~~sh
+## 확장자가 .txt인 파일만 검색합니다.
+ARRAY=$(find -depth -type f . \( -iname "*.txt" \))
+for ${f} in ${ARRAY[@]} do
+    echo ${f}
+done
+~~~
+
+&nbsp;&nbsp;**13.2. Batch file**  
+- **FOR _\<for_option\>_ %%\<element_variable_c\> IN ('DIR \<expression\> _\<dir_option\>_') DO ( ~ )**  
+**DIR**을 사용하여 표현식 \<expression\>과 일치하는 파일 또는 Directory를 찾아 %%\<element_variable_c\>에 설정합니다.  
+
+~~~batch
+:: 확장자가 .txt인 파일만 검색합니다.
+FOR /F %%f IN ('DIR *.txt /B /O:-D') DO (
+    echo %%f
+)
+~~~
