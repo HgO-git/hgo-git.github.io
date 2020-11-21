@@ -399,16 +399,23 @@ Batch file에 전달된 매개 변수를 이동합니다. /_\<n\>_ 을 사용하
 |**인수**|**설명**|
 |:----|:----|
 |ENABLEEXTENSIONS <br> DISABLEEXTENSIONS|**SETLOCAL** 명령 실행 전 설정과 상관없이 **ENDLOCAL** 명령 실행 전까지 '명령 확장 기능'이 활성화/비활성화됩니다. <br> 기본적으로 활성화되어있으며 비활성화할 필요가 거의 없습니다.|
-|ENABLEDELAYEDEXPANSION <br> DISABLEDELAYEDEXPANSION|**SETLOCAL** 명령 실행 전 설정과 상관없이 **ENDLOCAL** 명령 실행 전까지 '지연된 환경 변수 확장 기능'이 활성화/비활성화됩니다.|  
+|ENABLEDELAYEDEXPANSION <br> DISABLEDELAYEDEXPANSION|**SETLOCAL** 명령 실행 전 설정과 상관없이 **ENDLOCAL** 명령 실행 전까지 '지연된 환경 변수 확장 기능'이 활성화/비활성화됩니다.<br>Batch file의 실행을 위해 읽을 때 환경변수가 확장되는 데 ``ENABLEDELAYEDEXPANSION``이 활성화된 경우 읽을 때가 아니라 실행될 때 환경변수가 확장되며 **%** 대신 **!**를 사용하여 환경변수 확장 기능으로 실행 중에 환경변수 값을 변경할 수 있습니다.|
 
 ~~~batch
 :: 변수에 여러 번 값 설정  
 SETLOCAL ENABLEDELAYEDEXPANSION
-SET START_INDEX=
-IF [%1]=[] (
-    SET START_INDEX=0
-) ELSE (
-    SET START_INDEX=%1
+SET TARGET_FILE_PATH=%1
+SET INDEX=0
+
+IF EXIST %TARGET_FILE_PATH% (
+    FOR /F "delims=" %%L IN ( %TARGET_FILE_PATH% ) DO (
+        :: 5줄만 읽습니다.
+        IF !INDEX! LSS 5 (
+            ECHO "[ "!INDEX!" ] "%%L
+        )
+
+        SET /a INDEX+=1
+    )
 )
 ENDLOCAL
 ~~~  
