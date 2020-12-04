@@ -75,10 +75,10 @@ ECHO "title : BATCH" > info.txt
     |-r|Diretory 삭제시 하위의 내용을 먼저 삭제합니다. Recursive|
 	
 ~~~sh
-## 하위 파일과 함께 메세지 출력 없이 project_01 폴더 삭제
+## 하위 파일과 함께 메세지 출력 없이 project_01 디렉토리 삭제
 rm -rf "project_01"
 
-## project_02 폴더 삭제로 비어 있을 work 폴더도 함께 삭제
+## project_02 디렉토리 삭제로 비어 있을 work 디렉토리도 함께 삭제
 rmdir -rp "project_02"
 ~~~  
 
@@ -130,7 +130,7 @@ RMDIR /S /Q "work"
 \"${source_path}\"에서 \"${destination_path}\"로 복사합니다.  
 <br>  
 - **cp _\<option\>_ \"${source_file_paths}\" \"${destination_directory_path}\"**    
-\"${source_file_paths}\"에 명시된 파일들을 \"${destination_directory_path}\" 위치의 폴더로 복사합니다. 여러 개의 파일을 한번에 복사할 수 있습니다. 필요시 아래와 같은 _\<option\>_ 을 사용할 수 있습니다.  
+\"${source_file_paths}\"에 명시된 파일들을 \"${destination_directory_path}\" 위치의 디렉토리로 복사합니다. 여러 개의 파일을 한번에 복사할 수 있습니다. 필요시 아래와 같은 _\<option\>_ 을 사용할 수 있습니다.  
 
     |**Option**|**설명**|
     |:----|:----|
@@ -151,7 +151,7 @@ RMDIR /S /Q "work"
     |\--preserve=_\<attributes\>_|지정한 속성을 보존합니다. 이때, 속성을 여러 개 입력이 가능하며 따로 입력하지 않아도 됩니다.<br>- 기본 값 : mode, ownership, timestamps<br>- 사용 가능한 속성 : context, links, xattr, all|
     |\--no-preserve=_\<attributes\>_|지정한 속성을 보존하지 않습니다. 이때, 속성을 여러 개 입력 가능합니다.|
     |\--parents|Directory 하위의 전체 원본 파일 이름을 사용합니다.|
-    |-R<br>\--recursive|재귀적으로 복사합니다. 폴더와 하위에 있는 파일과 폴더들을 모두 복사합니다.|
+    |-R<br>\--recursive|재귀적으로 복사합니다. 디렉토리와 하위에 있는 파일과 디렉토리들을 모두 복사합니다.|
     |\--reflink=_\<when\>_|Clone/Copy-On-Write 복사본을 제어합니다.|
     |\--remove-destination|복사될 위치에 존재하는 파일을 열기 전에 삭제합니다. '\--force' 와 대비됩니다.|
     |\--sparse=_\<when\>_|부족한 파일의 생성을 제어합니다.|
@@ -183,7 +183,7 @@ _\<file_encoding\>_ 은 따로 설정하지 않으면 기본적으로 ASCII 입�
     |/A|ASCII 파일|
     |/B|Binary 파일|
 
-\"%source_paths%\"에 명시된 파일 또는 폴더들을 \"%destination_path%\"로 복사합니다. 여러 개를 한번에 복사할 수 있습니다.   
+\"%source_paths%\"에 명시된 파일 또는 디렉토리들을 \"%destination_path%\"로 복사합니다. 여러 개를 한번에 복사할 수 있습니다.   
 필요시 아래와 같은 _\<option\>_ 을 사용할 수 있습니다.  
 
 |**Option**|**설명**|
@@ -191,10 +191,10 @@ _\<file_encoding\>_ 은 따로 설정하지 않으면 기본적으로 ASCII 입�
 |/D|대상 파일이 암호화 없이 만들어지도록 허용합니다.|
 |/V|새 파일이 정상적으로 쓰여지는지 확인합니다.|
 |/N|이름이 8자보다 길거나 확장자가 3자보다 긴 경우 짧은 파일 이름이 있으면 그 이름을 사용합니다.|
-|/Y|\"%destination_path%\"에 이미 파일이나 폴더가 존재하면 확인 메세지 없이 덮어씁니다. COPYCMD 환경 변수에 이미 지정되어 있습니다.|
-|/-Y|\"%destination_path%\"에 이미 파일이나 폴더가 존재하면 복사 전에 덮어쓸 것인지 확인 메세지를 출력합니다.|
+|/Y|\"%destination_path%\"에 이미 파일이나 디렉토리가 존재하면 확인 메세지 없이 덮어씁니다. COPYCMD 환경 변수에 이미 지정되어 있습니다.|
+|/-Y|\"%destination_path%\"에 이미 파일이나 디렉토리가 존재하면 복사 전에 덮어쓸 것인지 확인 메세지를 출력합니다.|
 |/Z|'다시 시작 가능 모드'로 파일을 복사합니다. 복사 도중에 네트워크가 단절되면 복사가 중단되고 네트워크가 다시 연결되어 복사가 가능해지면 다시 복사를 시작합니다. 약한 네트워크에서 사용됩니다.|
-|/L|\"%source_paths%\"에 위치한 파일이나 폴더가 기호화된 링크(Symbolic Link, Hard Link, Junction)인 경우 복사하는 대신 기호화된 링크를 생성합니다. 기호화된 링크가 가리키는 실제 원본을 복사합니다.|  
+|/L|\"%source_paths%\"에 위치한 파일이나 디렉토리가 기호화된 링크(Symbolic Link, Hard Link, Junction)인 경우 복사하는 대신 기호화된 링크를 생성합니다. 기호화된 링크가 가리키는 실제 원본을 복사합니다.|  
 
 - **XCOPY _\<option\>_ \"%source_paths%\" \"%destination_path%\"**   
 \"%source_paths%\"에서 \"%destination_path%\"로 복사합니다. **COPY**의 확장 형태로 아래와 같은 다양한 옵션을 사용할 수 있습니다.
@@ -203,19 +203,19 @@ _\<file_encoding\>_ 은 따로 설정하지 않으면 기본적으로 ASCII 입�
     |:----|:----|
     |/A|원본의 아카이브 속성을 그대로 복사합니다. 기본값은 Y이므로 사용됩니다.|  
     |/H|숨김 파일과 시스템 파일도 복사합니다.|  
-    |/D:_\<date_format\>_|_\<date_format\>_ 에 지정된 날짜 이후에 변경된 파일을 복사합니다. 따로 _\<date_format\>_ 을 설정하지 않으면 \"%destination_path%\"에 있는 파일 혹은 폴더의 날짜보다 최신의 날짜인 원본들만 복사합니다.|  
-    |/E|비어있는 폴더를 포함하여 재귀적으로 복사합니다. 비어 있는 경우를 포함하여 폴더와 하위에 있는 파일과 폴더들을 모두 복사합니다. '/T'를 수정하는 데 사용할 수 있습니다.|  
-    |/EXCLUDE:_\<exclude_list_file_paths\>_|전체 경로나 일부 경로의 이름의 리스트로 구성된 파일을 설정하여 복사시 \"%source_paths%\"와 일부 일치하면 제외됩니다. _\<exclude_list_file_paths\>_ 에 여러 개의 파일을 명시할 수 있습니다. 예를 들어, exclude list에 .txt와 /work/ 가 있다면 work 폴더 내의 모든 파일을 제외하고 확장자가 .txt인 모든 파일도 제외합니다.|  
+    |/D:_\<date_format\>_|_\<date_format\>_ 에 지정된 날짜 이후에 변경된 파일을 복사합니다. 따로 _\<date_format\>_ 을 설정하지 않으면 \"%destination_path%\"에 있는 파일 혹은 디렉토리의 날짜보다 최신의 날짜인 원본들만 복사합니다.|  
+    |/E|비어있는 디렉토리를 포함하여 재귀적으로 복사합니다. 비어 있는 경우를 포함하여 디렉토리와 하위에 있는 파일과 디렉토리들을 모두 복사합니다. '/T'를 수정하는 데 사용할 수 있습니다.|  
+    |/EXCLUDE:_\<exclude_list_file_paths\>_|전체 경로나 일부 경로의 이름의 리스트로 구성된 파일을 설정하여 복사시 \"%source_paths%\"와 일부 일치하면 제외됩니다. _\<exclude_list_file_paths\>_ 에 여러 개의 파일을 명시할 수 있습니다. 예를 들어, exclude list에 .txt와 /work/ 가 있다면 work 디렉토리 내의 모든 파일을 제외하고 확장자가 .txt인 모든 파일도 제외합니다.|  
     |/M|아카이브 속성이 설정된 원본을 복사하고 아카이브 속성을 해제합니다. 일반 백업을 만들때 사용됩니다. 기본값은 Y이므로 사용됩니다.|  
-    |/S|비어있는 폴더를 제외하고 재귀적으로 복사합니다. 비어있는 폴더를 제외하고 폴더와 하위에 있는 파일과 폴더들을 모두 복사합니다.|  
+    |/S|비어있는 디렉토리를 제외하고 재귀적으로 복사합니다. 비어있는 디렉토리를 제외하고 디렉토리와 하위에 있는 파일과 디렉토리들을 모두 복사합니다.|  
     |/U|\"%destination_path%\"에 이미 존재하는 경우만 복사합니다. Update|
     |**Destination Option**|**설명**|
-    |/I|\"%destination_path%\"가 존재하지 않거나 두 개 이상의 파일을 복사하면 폴더로 가정합니다.|
+    |/I|\"%destination_path%\"가 존재하지 않거나 두 개 이상의 파일을 복사하면 디렉토리로 가정합니다.|
     |/K|속성을 복사합니다. 그렇지 않으면 읽기 전용 속성을 다시 설정합니다.|  
     |/N|가능하면 \"%destination_path%\"에 파일을 생성할 때 이름 8자, 확장자 3자까지인 짧은 이름을 사용합니다. 서로 다른 Format을 가진 Disk간에 복사할 때 필요할 수 있습니다. NTFS와 VFAT 같이 포맷이 다른 Disk간의 복사나 Data를 ISO9660 CDROM으로 보관하는 경우를 예로 들 수 있습니다.|  
     |/O|파일의 소유권과 ACL 정보를 복사합니다.|  
     |/R|읽기 전용 파일을 덮어씁니다.|  
-    |/T|파일은 복사하지 않고 폴더 구조만 생성합니다. 이때, 빈 폴더와 하위 폴더를 포함하지 않습니다. '/E'와 함께 사용하면 빈 폴더와 하위 폴더를 포함합니다.|  
+    |/T|파일은 복사하지 않고 디렉토리 구조만 생성합니다. 이때, 빈 디렉토리와 하위 디렉토리를 포함하지 않습니다. '/E'와 함께 사용하면 빈 디렉토리와 하위 디렉토리를 포함합니다.|  
     |/X|파일의 감사(audit) 설정을 복사합니다. /O 의미|   
     |**Common Option**|**설명**|  
     |/B|원본이 기호화된 링크인 경우 복사 대신 기호화된 링크를 생성합니다.|  
@@ -228,8 +228,8 @@ _\<file_encoding\>_ 은 따로 설정하지 않으면 기본적으로 ASCII 입�
     |/Q|복사하는 동안 파일 이름을 출력하지 않습니다.|  
     |/V|\"%destination_path%\"에 생성되는 새 파일의 확인합니다. 읽을 수 있는 지, 크기, 아니면 기록될 때 확인합니다.|  
     |/W|복사를 시작하기 전에 Prompt에 키 입력을 하라는 메세지를 출력합니다. 아무 키나 입력이 되어야 복사를 시작합니다.|  
-    |/Y|\"%destination_path%\"에 이미 파일이나 폴더가 존재하면 확인 메세지 없이 덮어씁니다. COPYCMD 환경 변수에 이미 지정되어 있습니다.|  
-    |/-Y|\"%destination_path%\"에 이미 파일이나 폴더가 존재하면 복사 전에 덮어쓸 것인지 확인 메세지를 출력합니다.|
+    |/Y|\"%destination_path%\"에 이미 파일이나 디렉토리가 존재하면 확인 메세지 없이 덮어씁니다. COPYCMD 환경 변수에 이미 지정되어 있습니다.|  
+    |/-Y|\"%destination_path%\"에 이미 파일이나 디렉토리가 존재하면 복사 전에 덮어쓸 것인지 확인 메세지를 출력합니다.|
     |/Z|'다시 시작 가능 모드'로 파일을 복사합니다. 복사 도중에 중단되면 가능하면 다시 복사를 시작합니다. 약한 네트워크에서 사용됩니다.|
 
 ~~~batch
@@ -245,7 +245,7 @@ COPY /B fruits.txt animals.txt %DESTINATION_DIRECTORY_PATH%
 <br>
 &nbsp;&nbsp;**4.1. Shell script**  
 - **-e \"${path}\"**
-\"${path}\"에 해당하는 위치에 파일이나 폴더가 있으면 true, 그렇지 않으면 false  
+\"${path}\"에 해당하는 위치에 파일이나 디렉토리가 있으면 true, 그렇지 않으면 false  
 	
 ~~~sh
 if [ -e "color/red.txt" ]
@@ -258,7 +258,7 @@ fi
 
 &nbsp;&nbsp;**4.2. Batch file**  
 - **EXIST \"%path%\"**   
-\"%path%\"에 해당하는 위치에 파일이나 폴더가 있으면 true, 그렇지 않으면 false  
+\"%path%\"에 해당하는 위치에 파일이나 디렉토리가 있으면 true, 그렇지 않으면 false  
 	
 ~~~batch
 IF EXIST "color/red.txt" (
@@ -276,7 +276,7 @@ IF EXIST "color/red.txt" (
     |/|Root Directory로 이동합니다.|
     |\-|직전의 Directory로 이동합니다.|
     |빈 값<br>~|사용자의 Home Directory로 이동합니다.|
-    |..|상위 폴더로 이동합니다.|
+    |..|상위 디렉토리로 이동합니다.|
 
 ~~~sh
 ## Root Directory로 이동
@@ -287,7 +287,7 @@ cd "work/project_01"
 
 echo "project 01" >> info.txt
 
-## 상위 폴더인 Work로 이동
+## 상위 디렉토리인 Work로 이동
 cd ..
 ~~~  
 
@@ -297,7 +297,7 @@ cd ..
 \"%path%\"의 경로로 이동합니다. **CD**와 **CHDIR**은 동일합니다.  
 
     |/D|현재 Drive까지 변경합니다.   
-    |..|경로 대신 사용하면 상위 폴더로 이동합니다.
+    |..|경로 대신 사용하면 상위 디렉토리로 이동합니다.
 
 ~~~batch
 :: F 드라이브로 이동
@@ -308,7 +308,7 @@ CD "work/project_01"
 
 ECHO "project 01" >> info.txt
 
-:: 상위 폴더인 Work로 이동
+:: 상위 디렉토리인 Work로 이동
 CD ..
 ~~~  
 
@@ -317,7 +317,7 @@ CD ..
 <br>
 &nbsp;&nbsp;**6.1. Shell script**  
 - **mv _\<option\>_ \"${source_path}\" \"${destination_path}\"**  
-\"${source_path}\"에 위치한 파일이나 폴더의 이름을 \"${destination_path}\"로 변경하거나 \"${source_path}\"에 있는 파일이나 폴더를 \"${destination_path}\"로 옮깁니다. 아래와 같은 옵션을 사용할 수 있습니다. 이때, -f, -i, -n 옵션은 서로 상반되는 기능이기 때문에 함께 사용하면 가장 마지막에 명시된 옵션만 적용됩니다.
+\"${source_path}\"에 위치한 파일이나 디렉토리의 이름을 \"${destination_path}\"로 변경하거나 \"${source_path}\"에 있는 파일이나 디렉토리를 \"${destination_path}\"로 옮깁니다. 아래와 같은 옵션을 사용할 수 있습니다. 이때, -f, -i, -n 옵션은 서로 상반되는 기능이기 때문에 함께 사용하면 가장 마지막에 명시된 옵션만 적용됩니다.
 
     |**Option**|**설명**|
     |:----|:----|
@@ -328,7 +328,7 @@ CD ..
     |-n<br>\--no-clobber|복사될 위치에 이미 파일이 존재하는 경우 덮어 쓰지 않습니다.| 
     |\--strip-trailing-slashes|\"${source_path}\" 경로의 마지막 슬래시( / )를 제거합니다.|
     |-S<br>\--suffix=_\<suffix\>_|일반적인 Backup의 접미사를 Override합니다.|
-    |-t<br>\--target-directory=_\<directory\>_|${source_path} 에 위치한 모든 파일이나 폴더를 지정한 _\<directory\>_ 로 이동합니다.|
+    |-t<br>\--target-directory=_\<directory\>_|${source_path} 에 위치한 모든 파일이나 디렉토리를 지정한 _\<directory\>_ 로 이동합니다.|
     |-T<br>\--no-target-directory|복사될 위치의 파일을 일반 파일로 취급합니다.|
     |-u<br>\--update|복사하려는 원본 파일이 복사될 위치의 파일보다 최신이거나 복사될 위치에 파일이 없을 때만 복사합니다.|
     |-v<br>\--verbose|복사 상태에 대해 출력합니다.|
@@ -346,12 +346,12 @@ mv "project_01" "project_02"
 **RENAME**과 **REN**은 동일하게 \"%source_file_path%\"에 위치한 파일의 이름을 \"%destination_file_name%\"로 변경합니다. \"%destination_file_name%\"로 새 드라이브나 새 경로를 지정할 수 없습니다.  
 <br>    
 - **MOVE _\<option\>_ \"%source_paths%\" \"%destination_path%\"**  
-\"%source_paths%\"에서 \"%destination_path%\"로 파일이나 폴더를 옮기고 이름을 변경합니다. \"%source_paths%\"에 여러 개의 경로를 명시하면 한번에 여러 개의 파일을 옮길 수 있습니다. \"%destination_path%\"에는 드라이브를 포함한 전체 경로나 이름을 사용하면 됩니다. 아래는 사용 가능한 옵션입니다.
+\"%source_paths%\"에서 \"%destination_path%\"로 파일이나 디렉토리를 옮기고 이름을 변경합니다. \"%source_paths%\"에 여러 개의 경로를 명시하면 한번에 여러 개의 파일을 옮길 수 있습니다. \"%destination_path%\"에는 드라이브를 포함한 전체 경로나 이름을 사용하면 됩니다. 아래는 사용 가능한 옵션입니다.
 
     |**Option**|**설명**|
     |:----|:----|
-    |/Y|\"%destination_path%\"에 이미 파일이나 폴더가 존재하면 확인 메세지 없이 덮어씁니다.|  
-    |/-Y|\"%destination_path%\"에 이미 파일이나 폴더가 존재하면 복사 전에 덮어쓸 것인지 확인 메세지를 출력합니다.|
+    |/Y|\"%destination_path%\"에 이미 파일이나 디렉토리가 존재하면 확인 메세지 없이 덮어씁니다.|  
+    |/-Y|\"%destination_path%\"에 이미 파일이나 디렉토리가 존재하면 복사 전에 덮어쓸 것인지 확인 메세지를 출력합니다.|
 
 ~~~batch
 CD work
@@ -371,7 +371,7 @@ REN info.txt info_prev.txt
 
     |**Option**|**설명**|
     |:----|:----|
-    |-a<br>\--all|. 으로 시작하는 숨겨진 파일이나 폴더를 무시하지 않습니다.|
+    |-a<br>\--all|. 으로 시작하는 숨겨진 파일이나 디렉토리를 무시하지 않습니다.|
     |-A<br>\--almost-all|. 과 .. 을 묵시적으로 나열하지 않습니다.|  
     |\--author|-l 옵션과 함께 사용되며 각 파일의 작성자를 출력합니다.|
     |-b<br>\--escape|비출력 문자(Nongraphic Characters)에 대한 C-style Escapes를 출력합니다.|
@@ -380,7 +380,7 @@ REN info.txt info_prev.txt
     |-c|-lt 옵션과 함께 사용하면 ctime( 파일 상태 정보의 마지막 수정 시간 )별로 정렬하여 표시합니다. -l 옵션과 함께 사용하면 ctime을 출력하고 이름별로 정렬하거나 ctime과 최신순으로 정렬합니다.|
     |-C|열(column)별로 항목을 나열합니다.|
     |\--color=_\<when\>_|출력 색상을 설정합니다. _\<when\>_이 생략된 경우 기본적으로 always로 설정되어 있으며 그 외, auto 나 never 를 설정할 수 있습니다.|
-    |-d<br>\--directory|내용을 제외한 폴더들만 나열합니다.|
+    |-d<br>\--directory|내용을 제외한 디렉토리들만 나열합니다.|
     |-D<br>\--dired|Emacs' dired mode용으로 디자인된 출력을 생성합니다.|
     |-f|정렬하지 않습니다. -aU 활성화, -ls \--color 비활성화됩니다.|
     |-F<br>\--classify|항목에 indicator( */=>@\| )를 추가합니다.|
@@ -388,12 +388,12 @@ REN info.txt info_prev.txt
     |\--format=_\<word\>_|format 설정을 합니다.(-x : across, -m : commas, -x : horizontal, -l : long, -1 : single-column, -l : verbose, -C : vertical)|
     |\--full-time|-l \--time-style=full-iso 와 같습니다.|
     |-g|-l와 같지만 소유자를 나열하지 않습니다.|
-    |\--group-directories-first|파일보다 폴더 그룹을 먼저 나열합니다. \--sort 옵션을 사용하여 확장할 수 있지만 \--sort=none (-U) 을 사용하면 그룹화가 비활성화됩니다.|
+    |\--group-directories-first|파일보다 디렉토리 그룹을 먼저 나열합니다. \--sort 옵션을 사용하여 확장할 수 있지만 \--sort=none (-U) 을 사용하면 그룹화가 비활성화됩니다.|
     |-G<br>\--no-group|나열된 목록이 긴 경우 그룹 이름을 출력하지 않습니다.|
     |-h<br>\--human-readable|-l 또는 -s와 함께 사용되며 사람이 읽을 수 있는 크기로 출력됩니다.(예 : 1K, 234M, 2G)|
     |\--si|-l 또는 -s와 함께 사용되며 사람이 읽을 수 있는 크기로 출력되지만 1024가 아닌 1000의 제곱을 사용합니다.|
     |-H<br>\--dereference-command-line|명령줄에 나열된 Symbolic Link를 따라갑니다.|
-    |\--dereference-command-line-symlink-to-dir|폴더를 가리키는 각 명령줄의 Symbolic Link를 따라갑니다.| 
+    |\--dereference-command-line-symlink-to-dir|디렉토리를 가리키는 각 명령줄의 Symbolic Link를 따라갑니다.| 
     |\--hide=_\<pattern\>_|Shell _\<pattern\>_ 과 일치하는 묵시적인 항목은 나열하지 않습니다. -a나 -A 옵션에 의해 재정의됩니다.|
     |\--hyperlink=_\<when\>_|파일 이름에 하이퍼링크를 생성합니다.  _\<when\>_ 에는 'always', 'auto', 'never' 값 설정이 가능하며 따로 입력하지 않으면 기본값인 always로 설정됩니다.|
     |\--indicator-style=_\<word\>_|_\<word\>_ 스타일의 indicator가 진입명(Entry Name)에 추가됩니다. _\<word\>_ 의 기본값은 none이며, slash (-p), file-type (\--file-type), classify (-F) 를 사용할 수 있습니다.|
@@ -406,13 +406,13 @@ REN info.txt info_prev.txt
     |-n<br>\--numeric-uid-gid|-l과 비슷하지만 숫자로된 User와 Group ID를 나열합니다.|
     |-N<br>\--literal|진입명(Entry Name)을 출력합니다.|
     |-o|-l과 비슷하지만 Group 정보를 나열하지 않습니다.|
-    |-p<br>\--indicator-style=slash|/(Slash)를 추가하여 폴더를 표시합니다.|
+    |-p<br>\--indicator-style=slash|/(Slash)를 추가하여 디렉토리를 표시합니다.|
     |-q<br>\--hide-control-chars|비출력 문자(Nongraphic Characters)는 ?로 대체하여 출력합니다.|
     |\--show-control-chars|비출력 문자(Nongraphic Characters)를 있는 그대로 출력합니다. 프로그램이 'ls'이 아니고 출력이 터미널이 아닌 경우 기본값입니다.|
     |-Q<br>\--quote-name|진입명(Entry Name)을 큰따옴표(")로 감쌉니다.|
     |\--quoting-style=_\<word\>_|진입명(Entry Name)에 _\<word\>_ 스타일의 인용을 사용합니다. _\<word\>_ 에는 literal, locale, shell, shell-always, shell-escape, shell-escape-always, c, escape 을 사용할 수 있습니다.|
     |-r<br>\--reverse|역순으로 정렬합니다.|
-    |-R<br>\--recursive|재귀적으로 하위 폴더까지 나열합니다.|
+    |-R<br>\--recursive|재귀적으로 하위 디렉토리까지 나열합니다.|
     |-s<br>\--size|각 파일의 할당된 크기를 Block 단위로 출력합니다.|
     |-S|파일의 크기를 기준으로 정렬합니다. 가장 큰 크기의 파일이 가장 먼저 나옵니다. (파일 크기별 내림차순)|
     |\--sort=_\<word\>_|이름 대신 설정한 _\<word\>_ 기준으로 정렬합니다. _\<word\>_ 에는 none (-U), size (-S), time (-t), version (-v), extension (-X) 를 사용할 수 있습니다.|
@@ -421,7 +421,7 @@ REN info.txt info_prev.txt
     |-t|수정된 시간을 기준으로 최신순으로 정렬합니다.|
     |-T<br>\--tabsize=_\<clos\>_|8 대신 각 _\<cols\>_ 에 설정한 값으로 Tab stop을 가정합니다.|
     |-u|-lt 와 함께 사용시 access time을 기준으로 정렬 및 표시합니다. -l 과 함께 사용시 이름 기준으로 정렬하고 access time을 표시합니다. 그 외 access time으로 가장 최신순으로 정렬합니다.|
-    |-U|정렬하지 않고 폴더 순서대로 항목들을 나열합니다.|
+    |-U|정렬하지 않고 디렉토리 순서대로 항목들을 나열합니다.|
     |-v|문자열 내의 버전과 같은 숫자를 기준으로 자연스럽게 정렬합니다.|
     |-w<br>\--width=_\<cols\>_|_\<cols\>_ 값으로 출력 너비를 설정합니다. 0이면 제한이 없다는 의미입니다.|
     |-x|열 대신 행별로 항목을 나열합니다.|
@@ -441,7 +441,7 @@ info.txt    project_01.project  library/temp.so
 
 &nbsp;&nbsp;**7.2. Batch file**  
 - **DIR _\<path\>_ _\<options\>_**  
-해당 경로의 파일과 폴더, 그리고 하위 폴더의 목록을 출력합니다. _\<path\>_ 에 출력할 Drive, Directory, File의 경로를 설정할 수 있습니다. 아래는 함께 사용할 수 있는 Option입니다.  
+해당 경로의 파일과 디렉토리, 그리고 하위 디렉토리의 목록을 출력합니다. _\<path\>_ 에 출력할 Drive, Directory, File의 경로를 설정할 수 있습니다. 아래는 함께 사용할 수 있는 Option입니다.  
 
     |**Option**|**설명**|
     |:----|:----|
@@ -455,7 +455,7 @@ info.txt    project_01.project  library/temp.so
     |/P|출력된 내용으로 Console 창 화면이 가득차면 잠깐 멈춥니다.|
     |/Q|파일 소유자를 출력합니다.|
     |/R|파일의 대체 데이터 스트림을 표시합니다.|
-    |/S|지정한 폴더와 그 하위 폴더까지 함께 출력합니다.(재귀적)|
+    |/S|지정한 디렉토리와 그 하위 디렉토리까지 함께 출력합니다.(재귀적)|
 	
 ~~~batch
 CD "work/project_01"
@@ -475,17 +475,17 @@ DIR /S
 <br>    
 &nbsp;&nbsp;**8.1. Shell script**  
 - **ln _\<options\>_ "${source_path}" "${link_name}"**  
-현재 경로에 ${source_path}를 ${link_name}으로 Link 생성합니다. 기본적으로 Hard link를 생성하므로 Symbolic Link를 생성하려면 \--symbolic 옵션과 함께 사용해야 합니다. 또한, 생성할 Link 위치에 Link든 실제 폴더나 파일이든 이미 대상이 있으면 안됩니다. Hard Link를 생성할 때 각 ${source_path}는 반드시 존재해야 합니다. Symbolic Link는 임의의 문자열을 포함할 수 있으며 이후 상대적 링크가 상위 폴더와의 관계에 의해 해석됩니다. 아래는 함께 사용할 수 있는 옵션입니다.
+현재 경로에 ${source_path}를 ${link_name}으로 Link 생성합니다. 기본적으로 Hard link를 생성하므로 Symbolic Link를 생성하려면 \--symbolic 옵션과 함께 사용해야 합니다. 또한, 생성할 Link 위치에 Link든 실제 디렉토리나 파일이든 이미 대상이 있으면 안됩니다. Hard Link를 생성할 때 각 ${source_path}는 반드시 존재해야 합니다. Symbolic Link는 임의의 문자열을 포함할 수 있으며 이후 상대적 링크가 상위 디렉토리와의 관계에 의해 해석됩니다. 아래는 함께 사용할 수 있는 옵션입니다.
 
     |**Option**|**설명**|
     |:----|:----|
     |\--backup=_\<control\>_|복사될 위치에 이미 파일이 존재하는 경우 Backup 파일을 생성합니다. 인수를 사용하지 않을 수도 있습니다.|
     |-b|'\--backup'과 비슷하지만 인수를 허용하지 않습니다.|
-    |-d <br> -F <br> \--directory|SuperUser가 Hard link 폴더에 접근 시도할 수 있도록 허용합니다. SuperUser라 하더라도 시스템 제한 사항으로 인해 실패할 수 있습니다.|
-    |-f <br> \--force|Link가 생성될 위치에 이미 존재하는 파일이나 폴더를 삭제 후 Link를 생성합니다.|
-    |-i <br> \--interactive|Link가 생성될 위치에 존재하는 파일이나 폴더를 삭제할 때 Prompt에 확인 메세지를 출력합니다.|
+    |-d <br> -F <br> \--directory|SuperUser가 Hard link 디렉토리에 접근 시도할 수 있도록 허용합니다. SuperUser라 하더라도 시스템 제한 사항으로 인해 실패할 수 있습니다.|
+    |-f <br> \--force|Link가 생성될 위치에 이미 존재하는 파일이나 디렉토리를 삭제 후 Link를 생성합니다.|
+    |-i <br> \--interactive|Link가 생성될 위치에 존재하는 파일이나 디렉토리를 삭제할 때 Prompt에 확인 메세지를 출력합니다.|
     |-L <br> \--logical|Symbolic Link인 ${source_path}의 역참조합니다.|
-    |-n <br> \--no-dereference|Symbolic Link를 생성할 ${source_path}가 폴더인 경우 ${link_name}를 일반 파일로 취급합니다.|
+    |-n <br> \--no-dereference|Symbolic Link를 생성할 ${source_path}가 디렉토리인 경우 ${link_name}를 일반 파일로 취급합니다.|
     |-P <br> \--physical|Symbolic Link에 직접 Hard Link를 생성합니다.|
     |-r <br> \--relative|Link 위치에 상대적인 Symbolic Link를 생성한다.|
     |-s <br> \--symbolic|Hard Link 대신 Symbolic Link를 생성합니다.|
@@ -503,11 +503,11 @@ ${link_path}에 위치한 Link를 제거합니다. 아래는 함께 사용할 �
     |-i|Link를 제거하기 전 매번 Prompt에 확인 메세지를 출력합니다.|
     |-I|3개 이상의 파일 혹은 재귀적으로 삭제하기 전에 Prompt에 확인 메세지를 한번 출력합니다. 대부분의 실수를 방지하면서 -i 를 사용하는 것보다 덜 귀찮습니다.|
     |\--interactive=_\<when\>_|_\<when\>_ 설정에 따라 Prompt에 출력합니다. _\<when\>_ 에 설정 가능한 값은 never, once ( -l ), always ( -i ) 이며 기본값은 always 입니다.|
-    |\--one-file-system|계층 구조를 재귀적으로 삭제할 때, 해당 명령줄 인자와 다른 파일 시스템의 폴더는 삭제하지 않고 건너뜁니다.|
+    |\--one-file-system|계층 구조를 재귀적으로 삭제할 때, 해당 명령줄 인자와 다른 파일 시스템의 디렉토리는 삭제하지 않고 건너뜁니다.|
     |\--no-preserve-root|'/'를 특별하게 취급하지 않습니다.|
     |\--preserve-root|'/'를 삭제하지 않습니다. 기본값입니다.|
-    |-r <br> -R <br> \--recursive|폴더와 하위에 있는 파일과 폴더들을 재귀적으로 삭제합니다.|
-    |-d <br> \--dir|비어 있는 폴더들을 삭제합니다.|
+    |-r <br> -R <br> \--recursive|디렉토리와 하위에 있는 파일과 디렉토리들을 재귀적으로 삭제합니다.|
+    |-d <br> \--dir|비어 있는 디렉토리들을 삭제합니다.|
 
 ~~~sh
 cd "shortcut"
@@ -531,7 +531,7 @@ rm -i "p00_test"
 
     |**Option**|**설명**|
     |:----|:----|
-    |/S|지정된 폴더와 그 하위의 폴더와 파일들을 모두 제거합니다. 폴더 구조를 일괄 제거하는 데 사용됩니다.|
+    |/S|지정된 디렉토리와 그 하위의 디렉토리와 파일들을 모두 제거합니다. 디렉토리 구조를 일괄 제거하는 데 사용됩니다.|
     |/Q|조용한 모드로, /S로 제거하는데 문제가 없으면 다시 확인 메세지를 출력하지 않습니다.|
 
 ~~~batch
@@ -572,7 +572,7 @@ ${file_path_1}과 ${file_path_2}에 위치한 두 개의 파일을 Byte 단위�
     |-z <br> \--zero-terminated|줄 구분문자(Line delimiter)가 newline(\n, \r, \n\r)이 아니라 NUL 입니다.|
 
 - **diff _\<options\>_ ${path_1} ${path_2}**  
-${path_1}과 ${path_2}에 위치한 파일이나 폴더를 한 줄씩 비교합니다. 종료 값은 두 파일이 같으면 0, 다르면 1, 문제가 있으면 2입니다. 아래는 함께 사용할 수 있는 옵션입니다.  
+${path_1}과 ${path_2}에 위치한 파일이나 디렉토리를 한 줄씩 비교합니다. 종료 값은 두 파일이 같으면 0, 다르면 1, 문제가 있으면 2입니다. 아래는 함께 사용할 수 있는 옵션입니다.  
 
     |**Option**|**설명**|
     |:----|:----|
@@ -595,7 +595,7 @@ ${path_1}과 ${path_2}에 위치한 파일이나 폴더를 한 줄씩 비교합�
     |\--tabsize=_\<num\>_|Tab이 _\<num\>_ 값이면 모든 열 출력을 멈춥니다. _\<num\>_ 의 기본 값은 8입니다.|
     |\--suppress-blank-empty|빈 출력 줄 전에 공백이나 Tab을 표시하지 않습니다.
     |-l <br> \--paginate|출력을 'pr'로 전달하여 페이지를 매깁니다.|
-    |-r <br> \--recursive|하위 폴더들에서도 재귀적으로 비교합니다.|
+    |-r <br> \--recursive|하위 디렉토리들에서도 재귀적으로 비교합니다.|
     |\--no-dereference|Symbolic Link를 따라가지 않습니다.|
     |-N <br> \--new-file|비교하려는 파일이 없는 경우 빈 파일로 취급합니다.|
     |\--unidirectional-new-file|비교하려는 첫 번째 파일이 없는 경우 빈 파일로 취급합니다.|
@@ -603,9 +603,9 @@ ${path_1}과 ${path_2}에 위치한 파일이나 폴더를 한 줄씩 비교합�
     |\--no-ignore-file-name-case|파일 이름 비교시 대소문자를 구분합니다.|
     |-x <br> \--exclude=_\<pat\>_|_\<pat\>_ 과 일치하는 파일을 제외합니다.|
     |-X <br> \--exclude-from=_\<file\>_|_\<file\>_ 의 패턴과 일치하는 파일들은 제외합니다.|
-    |-S <br> \--starting-file=_\<file\>_|폴더들을 비교시 _\<file\>_ 파일부터 비교를 시작합니다.|
-    |\--from-file=_\<file_1\>_|_\<file_1\>_ 을 모든 피연산자(${path_2}에 명시한 경로의 파일들)와 비교합니다. _\<file_1\>_ 는 폴더가 될 수도 있습니다.|
-    |\--to-file=_\<file_2\>_|_\<file_2\>_ 을 모든 피연산자(${path_1}에 명시한 경로의 파일들)와 비교합니다. _\<file_1\>_ 는 폴더가 될 수도 있습니다.|
+    |-S <br> \--starting-file=_\<file\>_|디렉토리들을 비교시 _\<file\>_ 파일부터 비교를 시작합니다.|
+    |\--from-file=_\<file_1\>_|_\<file_1\>_ 을 모든 피연산자(${path_2}에 명시한 경로의 파일들)와 비교합니다. _\<file_1\>_ 는 디렉토리가 될 수도 있습니다.|
+    |\--to-file=_\<file_2\>_|_\<file_2\>_ 을 모든 피연산자(${path_1}에 명시한 경로의 파일들)와 비교합니다. _\<file_1\>_ 는 디렉토리가 될 수도 있습니다.|
     |-i <br> \--ignore-case|파일 내용 비교시 대소문자를 구분하지 않습니다.|
     |-E <br> \--ignore-tab-expansion|비교시 파일 내 Tab으로 인한 변경 사항을 무시합니다.|
     |-Z <br> \--ignore-trailing-space|비교시 파일 내 줄 끝에 있는 White space를 무시합니다.|
@@ -704,7 +704,7 @@ FC "project_01" "project_02"
     |-s <br> \--stable|마지막 비교를 비활성화하여 정렬을 안정화합니다.|
     |-S <br> \--buffer-size=_\<size\>_|Main Memory Buffer에 사용할 _\<size\>_ 를 지정합니다. _\<size\>_ 는 곱셈, Memory, 등의 접미사를 사용할 수 있습니다. 접미사 K가 기본값이며 그 외 b, M, G, T, P, E, Z, Y 등을 사용할 수 있습니다.|
     |-t <br> \--field-separator=_\<sep\>_|공백을 _\<sep\>_ 을 사용하여 대체합니다.|
-    |-T <br> \--temporary-directory=_\<dir\>_|_\<dir\>_ 에 위치한 폴더를 임시로 사용합니다. $TMPDIR 이나 /tmp 는 사용할 수 없으며 옵션을 여러 개 사용하여 여러 개의 폴더를 지정할 수 있습니다.| 
+    |-T <br> \--temporary-directory=_\<dir\>_|_\<dir\>_ 에 위치한 디렉토리를 임시로 사용합니다. $TMPDIR 이나 /tmp 는 사용할 수 없으며 옵션을 여러 개 사용하여 여러 개의 디렉토리를 지정할 수 있습니다.| 
     |\--parallel=_\<n\>_|동시에 정렬을 진행할 수를 _\<n\>_ 로 설정합니다.|
     |-u <br> \--unique|-c 와 함께 사용하면 엄격하게 순서를 확인하고 -c와 함께 사용하지 않으면 동일한 실행 중 첫 번째만 출력합니다.|
     |-z <br> \--zero-terminated|줄 구분자가 NewLine이 아니라 NUL 입니다.|
@@ -824,14 +824,14 @@ MORE /C < "info.txt"
     |\--binary-files=_\<type\>_|Binary 파일들을 _\<type\>_ 으로 가정합니다. _\<type\>_ 은 'binary', 'text', 'without_match' 로 구성됩니다.|
     |-a <br> --text|\--binary-files=text 와 동일합니다.|
     |-I|\--binary-files=without-match 와 동일합니다.|
-    |-d <br> \--directories=_\<action\>_|폴더들의 처리 방법으로 _\<action\>_ 은 'read', 'recurse', 'skip'을 사용 할 수 있습니다.|
+    |-d <br> \--directories=_\<action\>_|디렉토리들의 처리 방법으로 _\<action\>_ 은 'read', 'recurse', 'skip'을 사용 할 수 있습니다.|
     |-D <br> \--devices=_\<action\>_|FIFO, Socket, Device의 처리 방법으로  _\<action\>_ 은 'read', 'skip'을 사용 할 수 있습니다.|
     |-r <br> \--recursive|--directories=recurse 와 동일합니다.|
     |-R <br> \--dereference-recursive|-r 과 비슷하지만 모든 Symbolic Link를 따릅니다.|
     |\--include=_\<file_pattern\>_|_\<file_pattern\>_ 와 일치하는 파일들만 검색합니다.|
-    |\--exclude=_\<file_pattern\>_|_\<file_pattern\>_ 와 일치하는 파일이나 폴더는 생략됩니다.|
+    |\--exclude=_\<file_pattern\>_|_\<file_pattern\>_ 와 일치하는 파일이나 디렉토리는 생략됩니다.|
     |\--exclude-from=_\<file\>_|_\<file\>_ 에서 file pattern과 일치하는 파일은 생략됩니다.|
-    |\--exclude-dir=_\<pattern\>_|_\<pattern\>_ 과 일치하는 폴더는 생략됩니다.|
+    |\--exclude-dir=_\<pattern\>_|_\<pattern\>_ 과 일치하는 디렉토리는 생략됩니다.|
     |-L <br> \--files-without-match|선택하지 않은 줄은 ${file_paths} 이름만 출력합니다.|
     |-l <br> \--files-with-matches|선택한 줄은 ${file_paths} 이름만 출력합니다.|
     |-c <br> \--count|파일당 선택한 줄의 수만 출력합니다.|
@@ -868,11 +868,11 @@ CD "work/project_01"
 FIND /I "*.proj" "info.txt"
 ~~~  
 
-###### 13. 파일이나 폴더 찾기    
-&nbsp;지정한 경로에서 파일이나 폴더를 찾습니다.  
+###### 13. 파일이나 디렉토리 찾기    
+&nbsp;지정한 경로에서 파일이나 디렉토리를 찾습니다.  
 &nbsp;&nbsp;**13.1. Shell script**
 - **find _\<options\>_ "${path}" _\<expression\>_**  
-지정한 ${path} 경로에서 표현식 _\<expression\>_ 에 맞는 파일, 폴더를 나열합니다. ${path}가 지정되지 않은 경우 현재 Directory 경로를 기본 값으로 사용합니다. 명령줄에 ``- ( ) , !`` 문자와 해당 문자가 시작하는 첫 번째 인자까지 검색을 진행할 파일 또는 Directory 이름으로 취급하며 그 뒤에 따라오는 인자는 검색할 대상에 대한 표현식 \<expression\>으로 취급합니다. 검색에 영향을 주는 옵션은 마지막 경로 바로 뒤에 설정하지만 Symbolic Link의 처리를 제어하는 -H, -L, -P 옵션들은 첫 번째 경로 바로 앞에 설정합니다. -H, -L, -P 옵션이 하나 이상 설정된 경우 명령줄 내 마지막에 오는 옵션만 적용됩니다. -H와 -L 옵션이 지정되지 않으면 -P가 기본값입니다. 아래는 해당 옵션의 자세한 설명입니다.
+지정한 ${path} 경로에서 표현식 _\<expression\>_ 에 맞는 파일, 디렉토리를 나열합니다. ${path}가 지정되지 않은 경우 현재 Directory 경로를 기본 값으로 사용합니다. 명령줄에 ``- ( ) , !`` 문자와 해당 문자가 시작하는 첫 번째 인자까지 검색을 진행할 파일 또는 Directory 이름으로 취급하며 그 뒤에 따라오는 인자는 검색할 대상에 대한 표현식 \<expression\>으로 취급합니다. 검색에 영향을 주는 옵션은 마지막 경로 바로 뒤에 설정하지만 Symbolic Link의 처리를 제어하는 -H, -L, -P 옵션들은 첫 번째 경로 바로 앞에 설정합니다. -H, -L, -P 옵션이 하나 이상 설정된 경우 명령줄 내 마지막에 오는 옵션만 적용됩니다. -H와 -L 옵션이 지정되지 않으면 -P가 기본값입니다. 아래는 해당 옵션의 자세한 설명입니다.
 
 |**Option**|**설명**|
 |:----|:----|
@@ -957,7 +957,7 @@ FIND /I "*.proj" "info.txt"
     |-perm -\<mode\>|파일에 대한 모든 Permission bit mode가 설정되어 있습니다. Symbolic Mode에서 사용 가능하고 사용하고자 할 때 보통 사용되는 형태입니다. Symbolic Mode를 사용할 때 u, g, o 를 지정해야합니다.|
     |-perm +\<mode\>|파일에 대한 Permission bit mode가 설정되어 있습니다. Symbolic Mode에서 사용 가능한 형태이며 사용시 u, g, o를 지정해야합니다.|
     |-regex \<pattern\>|파일 이름이 정규 표현식 패턴 \<pattern\>과 일치합니다. 이때, 검색이 아니라 전체 경로에서 일치해야 합니다.
-    |-wholename \<pattern\>|파일 이름이 Shell Pattern의 패턴과 일치합니다. ?e/?f 나 ?e.?f를 특별하게 취급하지 않습니다. Directory Tree에 있는 모든 파일과 폴더를 확인하지 않고 무시하려면 -prune을 사용하면 됩니다.|
+    |-wholename \<pattern\>|파일 이름이 Shell Pattern의 패턴과 일치합니다. ?e/?f 나 ?e.?f를 특별하게 취급하지 않습니다. Directory Tree에 있는 모든 파일과 디렉토리를 확인하지 않고 무시하려면 -prune을 사용하면 됩니다.|
     |-size \<n\>|파일이 사용하는 용량 \<n\>입니다. Indirect block을 계산하지는 않지만 실제로 할당되지 않는 Sparse File의 Block을 계산합니다.\<n\>에는 아래와 같은 접미사를 사용할 수 있습니다.<br>b : 512 byte Block으로 접미사가 없을 경우 기본 값으로 사용됩니다.<br>c : Byte<br>w : 2 Byte 단어<br>k : 킬로바이트(1024 bytes)<br>M : 메가바이트(1048576 bytes)<br>G : 기가바이트(1073741824 bytes)|
     |-true|항상 true|
     |-type \<c\>|파일의 Type이 \<c\>입니다. 아래는 \<c\>에 사용할 수 있는 값입니다.<br>b : 특수한 Block(Buffered)<br>c : 특수한 문자(Unbuffered)<br>d : 디렉토리<br>p : 명명된 Pipe(FIFO)f : 일반 파일<br>l : Symbolic Link(-L 이나 -follow 옵션은 Symbolic Link가 끊기기 전까지 유효합니다.)<br>s : Socket<br>D : door(Solaris)|

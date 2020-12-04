@@ -83,12 +83,12 @@ IF [%1]==[] (
 ENDLOCAL
 ~~~  
 
-###### 2. 경로(파일, 폴더)  
+###### 2. 경로(파일, 디렉토리)  
 <br>
 &nbsp;**2.1. Shell script**   
 - 경로가 유효한지  
     - **-e \"${path}\"**  
-    path에 해당하는 위치에 파일이나 폴더가 있으면 true, 그렇지 않으면 false  
+    path에 해당하는 위치에 파일이나 디렉토리가 있으면 true, 그렇지 않으면 false  
     
     ~~~sh
     if [ -e "color/red.txt" ]
@@ -101,7 +101,7 @@ ENDLOCAL
 
 - 경로가 유효하지 않은지  
     - **! -e \"${path}\"**  
-    path에 해당하는 위치에 파일이나 폴더가 없으면 true, 그렇지 않으면 false  
+    path에 해당하는 위치에 파일이나 디렉토리가 없으면 true, 그렇지 않으면 false  
     
     ~~~sh
     if [ ! -e "color/red.txt" ]
@@ -112,11 +112,11 @@ ENDLOCAL
     fi
     ~~~
 
-- 파일인지, 폴더인지  
+- 파일인지, 디렉토리인지  
     - **-f \"${path}\"**  
-    path가 일반 파일이면 true, 폴더나 장치 파일인 경우 false  
+    path가 일반 파일이면 true, 디렉토리나 장치 파일인 경우 false  
     - **-d \"${path}\"**  
-    path가 폴더이면 true, 그렇지 않으면 false  
+    path가 디렉토리이면 true, 그렇지 않으면 false  
 
     ~~~sh
     if [ -f "color/green.txt" ]
@@ -183,7 +183,7 @@ ENDLOCAL
 &nbsp;**2.2. Batch file**     
 - 경로가 유효한지  
     - **EXIST \"%path%\"**   
-    path에 해당하는 위치에 파일이나 폴더가 있으면 true, 그렇지 않으면 false  
+    path에 해당하는 위치에 파일이나 디렉토리가 있으면 true, 그렇지 않으면 false  
     
     ~~~batch
     IF EXIST "color/red.txt" (
@@ -191,9 +191,9 @@ ENDLOCAL
     )
     ~~~
 
-- 파일인지, 폴더인지  
+- 파일인지, 디렉토리인지  
     - **EXIST \"%path%/\"**  
-    경로 맨 끝에 **/**을 붙여 폴더가 있는 지 확인할 수 있습니다. path가 일반 폴더이면 true, 그렇지 않으면 경우 false  
+    경로 맨 끝에 **/**을 붙여 디렉토리가 있는 지 확인할 수 있습니다. path가 일반 디렉토리이면 true, 그렇지 않으면 경우 false  
 
     ~~~batch
     IF EXIST "color/achromatic/" (
