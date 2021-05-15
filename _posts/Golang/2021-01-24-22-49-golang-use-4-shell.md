@@ -83,5 +83,26 @@ func MakeSymbolicLink(sourcePath, linkPath string) error {
 }
 ~~~
 
+###### 4. 프로그램 종료  
+&nbsp;Shell script에서 실행한 Go 프로그램이 종료시 반환하는 값에 따라 성공, 오류 처리를 할 수 있습니다.
+
+- **func Exit(code int)**  
+현재 프로그램이 주어진 상태 코드로 종료되도록 합니다. 일반적으로 상태 코드 값이 0이면 성공, 그렇지 않으면 실패(오류)입니다. 프로그램은 즉시 종료되며 defer로 지연된 함수는 실행되지 않습니다.  
+프로그램 이식성을 위하여 상태 코드는 [0, 125] 범위의 값을 사용합니다.  
+
+~~~go
+func main() {
+	defer func() {
+		panicMsg := recover()
+		if resultValue != nil {
+			fmt.Printf("[panic] %v", resultValue)
+			os.exit(1)
+		}
+	}()
+
+	fmt.Println("Success")
+}
+~~~
+
 ###### [참고]  
 - [os 패키지](https://golang.org/pkg/os)
