@@ -54,9 +54,23 @@ POSIX 규칙은 계산적으로 금지되며 잘 정의되지도 않습니다. �
 - **func (re *Regexp) ReplaceAll(src, repl []byte) []byte**  
 byte slice인 src에서 정규표현식 re와 일치하는 값을 전달된 byte slice인 repl로 대체하여 복사본 src를 반환합니다. repl 내부에서는 $ 기호가 확장되어 해석됩니다. 예를 들어, $1은 첫 번째 하위 일치 항목 텍스트를 나타냅니다.
 
-###### 3. 정규표현식 작성 예  
+###### 3. 정규표현식 작성  
 &nbsp;Perl, Python, 그 외 구현된 다른 언어와 동일한 정규표현식 구문을 사용합니다.
 
+&nbsp;**3.1. 기본**
+
+|구분|정규표현식|
+|:----|:---:|
+|한 글자 이상|``+``|
+|한 글자|``.``|
+|시작을 의미|``^``|
+|끝을 의미|``$``|
+|**Numeric**<br>숫자로만 구성|``[0-9]``|
+|**Alphabetic**<br>영문자로만 구성|``[a-zA-Z]``|
+|**Alphanumeric**<br>영문자, 숫자로만 구성|``[a-zA-Z0-9]``|
+|특수 기호로 구성|``[!@#$%^&()_-/]``|
+
+&nbsp;**3.2. 예**
 ~~~go
 package main
 
@@ -79,7 +93,8 @@ func main() {
 	var regexpPath *regexp.Regexp
 	var err error
 
-	if match, err := regexp.MatchString("([a-zA-Z0-9!@#$%^&()_-]+).txt", filePath); match && (err == nil) {
+	// 영어, 숫자, 특수기호로 구성된 한 글자 이상인 이름을 가진 txt 파일을 찾음
+	if match, err := regexp.MatchString("([a-zA-Z0-9!@#$%^&()_-]+).txt$", filePath); match && (err == nil) {
 		fmt.Printf("Match *.txt : %s\n", filePath)
 	}
 
