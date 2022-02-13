@@ -1,7 +1,7 @@
 # Settings
-title: HgO.Log
+title: HgO Reference
 description: 
-crawlertitle: "HgO.Log"
+crawlertitle: "HgO Reference"
 url: "http://hgo-git.github.io"
 baseurl: ""
 language: 'kr-ko'

@@ -1,6 +1,6 @@
 ---
 layout: home
 title: Home
-crawlertitle: "HgO.Log"
-summary: HgO Log
+crawlertitle: "HgO Reference"
+summary: HgO Reference
 ---
