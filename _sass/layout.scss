@@ -18,7 +18,7 @@
 
 // Copyright
 .copyright-style {
-  position: fixed;
+  position: relative;
   width: 100%;
   height: fit-content;
   left: 0;
@@ -30,7 +30,7 @@
   font-size: $copyright-font-size;
 
   > hr {
-    height: 0.5px;
+    height: 1.0px;
     border : 0;
     background-image: linear-gradient(to right, white, $color-Hg, white); 
   }
