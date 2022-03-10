@@ -18,15 +18,19 @@
 
 // Copyright
 .copyright-style {
-  position: relative;
-  width: auto;
+  position: fixed;
+  width: 100%;
   height: fit-content;
+  left: 0;
+  bottom: 0;
+  margin: 0;
   margin-top: 5.0em;
   margin-bottom: 1.7em;
+  text-align: center;
   font-size: $copyright-font-size;
 
   > hr {
-    height: 1.0px;
+    height: 0.5px;
     border : 0;
     background-image: linear-gradient(to right, white, $color-Hg, white); 
   }
