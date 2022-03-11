@@ -6,8 +6,19 @@
 
 @import "variables";
 
-// Post List
 .post-list-style {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 5.0em;
+  color: inherit;
+  float: left;
+}
+
+// Post List Element
+.post-list-element-style {
   position: relative;
   width: auto;
   height: fit-content;
@@ -86,3 +97,5 @@
     color: inherit;
   }
 }
+
+// post-category-list-style
