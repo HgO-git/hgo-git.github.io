@@ -19,6 +19,9 @@
 }
 
 html {
+  position: relative;
+  min-height: 100%;
+
   font-size: 16px;
   line-height: 1.5em;
   margin: 0px;
@@ -38,6 +41,8 @@ title {
 
 // Body
 body {
+  height: 100%;
+  min-height: 100%;
   margin: 0px;
   padding: 0px;
   -webkit-text-size-adjust: 100%;
