@@ -1,0 +1,113 @@
+/**
+ * Menu
+ */
+
+@charset "UTF-8";
+
+@import "variables";
+
+.post-menu-style {
+    position: relative;
+    width: 15%;
+    height: fit-content;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    float: right;
+
+    * {
+        font-size: $post-menu-font-size;
+        color: $color-Hg;
+    }
+
+    // Categories
+    > p {
+        margin-left: 0.25em;
+
+        font-size: 1.4em;
+        font-weight: bold;
+        text-decoration: none;
+        text-shadow: $post-menu-text-shadow;
+        -moz-text-shadow: $post-menu-text-shadow;
+        -webkit-text-shadow: $post-menu-text-shadow;
+    }
+
+    > hr {
+        width: 80%;
+        border: $post-menu-title-underline-border;
+    }
+
+    // Category
+    > ul {
+        width: min-content;
+        margin: 0;
+        margin-left: 0.5em;
+        padding: 0;           
+         
+        list-style-type: none;
+
+        > li {
+            width: min-content;
+            margin: 0;
+            padding: 0;
+
+            font-size: 1.3em;
+            font-weight: bold;   
+            text-decoration: none;
+            text-shadow: $post-menu-text-shadow;
+            -moz-text-shadow: $post-menu-text-shadow;
+            -webkit-text-shadow: $post-menu-text-shadow;
+
+            &:hover {
+                cursor: pointer;
+                font-size: 1.4em;
+                color: black;
+            }
+        }
+
+        // Post in category
+        > ul {
+            margin: 0;
+            margin-left: 0.5em;
+            padding: 0;
+            
+            display: none;
+            list-style-type: none;
+            
+            font-weight: normal;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            > li {
+                width: 11em;
+                margin: 0;
+                padding: 0;
+                
+                list-style-type: none;
+                
+                font-size: 1.0em;
+                font-weight: normal;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                
+                // hover -> title
+                // &:hover {
+                //     overflow: visible;
+                //     white-space: normal;
+                //     height:auto;
+                // }
+
+                > a {
+                    color: black;
+                }
+            }
+        }
+        
+        > hr {
+            width: 11em;
+            border: $post-menu-split-border;
+        }
+    }
+}
