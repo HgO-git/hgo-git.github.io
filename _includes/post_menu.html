@@ -1,0 +1,62 @@
+<div class="post-menu-style">
+  <p>Categories</p>
+  <hr>
+  <ul id='post-menu'>
+  </ul>
+</div>
+
+<script>
+  function switchCollapseExpand( idString = "" ) {
+    if ( idString == "" ) {
+      return 
+    }
+
+    let ulCategory = document.getElementById( idString );
+    if ( ulCategory != null ) {
+      if ( ulCategory.style.display == 'block' ) {
+        ulCategory.style.display = 'none';
+      }
+      else {
+        ulCategory.style.display = 'block';
+      }
+    }
+  }
+  
+  function generateMenu() {
+    const ulPostMenu = document.getElementById( "post-menu" );
+    var ulCategory;
+    var idCategory = "";
+
+    {% for post in site.posts %}
+    {
+      idCategory = "{{ post.categories }}";
+      ulCategory = document.getElementById( "{{ post.categories }}" );
+      if ( ulCategory == null )
+      {
+        let liCategory = document.createElement( 'li' );
+        liCategory.appendChild( document.createTextNode( "{{ post.categories }}" ) );
+        liCategory.setAttribute( 'onclick', 'switchCollapseExpand("'+ idCategory +'")' );
+        ulPostMenu.appendChild( liCategory );
+        
+        ulCategory = document.createElement( 'ul' );
+        ulCategory.setAttribute( 'id', "{{ post.categories }}" );
+        ulPostMenu.appendChild( ulCategory );
+
+        ulPostMenu.appendChild( document.createElement( 'hr' ) );
+      }
+      
+      let aLink = document.createElement( 'a' );
+      aLink.textContent = "{{ post.title }}";
+      aLink.href = "{{ post.url }}";
+
+      let liPost = document.createElement( 'li' );
+      liPost.appendChild( aLink );
+      // hover -> title
+      liPost.setAttribute( 'title', "{{ post.title }}" );
+
+      ulCategory.appendChild( liPost );
+    }
+    {% endfor %}
+  }
+  generateMenu();
+</script>
