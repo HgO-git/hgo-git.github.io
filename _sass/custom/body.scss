@@ -62,9 +62,11 @@
   width: fit-content;
   height: $post-date-height;
   padding-left: 0.25rem;
+  padding-right: 0.25rem;
   float: right;
   transform: translateY(-0.6rem);
   border-left: $post-split-border;
+  border-right: $post-split-border;
   font-size: $post-date-font-size;
 }
 
