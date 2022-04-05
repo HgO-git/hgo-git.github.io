@@ -80,6 +80,11 @@
 }
 
 .post-style {
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 5.0em;
+  
   > hr {
     position: relative;
     height: 1px;
