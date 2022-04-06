@@ -1,6 +1,6 @@
 {% if 0 < site.posts.size %}
 <div class="post-list-style container">
-    {% for post in site.posts %}
+    {% for post in site.posts limit:5 %}
     <hr class="hr-rounded-edge-top">
     <article class="post-list-element-style">
         <h5>
