@@ -27,6 +27,7 @@
   padding-left: 0.5em;
   padding-right: 0.5em;
   color: black;
+  transform: translateY(-1.0em);
 
   // Post Title
   > h5 > a {
@@ -77,8 +78,8 @@
   height:auto;
   margin-top: 3em;
   padding: 0px;
-  overflow: hidden;
-  transform: translateY(-32px);
+  word-wrap: break-word;
+  transform: translateY(-2.0em);
 }
 
 .post-style {
